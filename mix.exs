@@ -3,7 +3,7 @@ defmodule Kalecto.Mixfile do
 
   def project do
     [app: :kalecto,
-     version: "0.0.1",
+     version: "0.0.2",
      elixir: "~> 1.0",
      package: package,
      description: description,
@@ -14,7 +14,7 @@ defmodule Kalecto.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :kalends]]
   end
 
   # Dependencies can be Hex packages:
