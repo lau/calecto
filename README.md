@@ -78,7 +78,7 @@ datetime to another time zone:
 
 Or we could get the unix timestamp:
 
-```
+```elixir
     iex> example_loaded_from_db |> Kalends.DateTime.Format.unix
     1425314899
 ```
