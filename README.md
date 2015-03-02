@@ -6,7 +6,7 @@ For saving dates, times and datetimes in Ecto.
 
 ```elixir
     defp deps do
-      [  {:kalecto, ">= 0.0.1"},  ]
+      [  {:kalecto, ">= 0.0.2"},  ]
     end
 ```
 The types are:
@@ -23,6 +23,7 @@ If you have a date as a primitive type, you can use Kalecto.Date.
 If you have a time as a primitive type, you can use Kalecto.Time.
 
 Microseconds of NaiveDateTime and DateTimeUTC are discarded/ignored if present.
+It is planned to include microseconds after a newer version of Ecto is released.
 
 ## Example usage
 
