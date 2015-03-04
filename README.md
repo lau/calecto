@@ -95,8 +95,9 @@ More information about Kalends functionality in the Kalends documentation: http:
 
 ## Roadmap
 
-The next planned feature is being able to save DateTime structs that are not
-UTC. Saved DateTimes should preserve the timezone, hour, minute etc. If a
-timezone's rules/offset is changed the best case scenario is that the only
-thing that changes when the DateTime is loaded from the db is the offset. That
-way, if you avoid having the wall time change.
+- Support for upcoming Ecto 0.9 and microseconds
+
+- The next planned feature is being able to save DateTime structs that are not
+  UTC. Saved DateTimes should preserve the timezone, hour, minute etc. If a
+  timezone's rules/offset is changed the best case scenario is that the only
+  thing that changes when the DateTime is loaded from the db is the offset.
