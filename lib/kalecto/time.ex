@@ -21,8 +21,12 @@ defmodule Kalecto.Time do
   @doc """
   Casts to time.
   """
-  def cast(<<hour::16, ?:, min::16, ?:, sec::16, rest::binary>>) do
-    if valid_rest?(rest), do: from_parts(to_i(hour), to_i(min), to_i(sec)), else: :error
+  def cast(<<hour::2-bytes, ?:, min::2-bytes, ?:, sec::2-bytes, rest::binary>>) do
+    if usec(rest) do
+      from_parts(to_i(hour), to_i(min), to_i(sec))
+    else
+      :error
+    end
   end
   def cast(%Kalends.Time{} = t),
     do: {:ok, t}

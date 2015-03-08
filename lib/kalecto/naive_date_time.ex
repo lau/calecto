@@ -19,38 +19,38 @@ defmodule Kalecto.NaiveDateTime do
   defdelegate blank?(value), to: Ecto.Type
 
   @doc """
-  Casts to date.
+  Casts to datetime.
   """
-  def cast(<<year::32, ?-, month::16, ?-, day::16, sep,
-             hour::16, ?:, min::16, ?:, sec::16, rest::binary>>) when sep in [?\s, ?T] do
-    if valid_rest?(rest) do
-      from_parts(to_li(year), to_i(month), to_i(day),
-                 to_i(hour), to_i(min), to_i(sec))
+  def cast(<<year::4-bytes, ?-, month::2-bytes, ?-, day::2-bytes, sep,
+             hour::2-bytes, ?:, min::2-bytes, ?:, sec::2-bytes, rest::binary>>) when sep in [?\s, ?T] do
+    if usec(rest) do
+      from_parts(to_i(year), to_i(month), to_i(day),
+                 to_i(hour), to_i(min), to_i(sec), usec(rest))
     else
       :error
     end
   end
-  def cast(%Kalends.NaiveDateTime{} = dt),
-    do: {:ok, dt}
+  def cast(%Kalends.NaiveDateTime{} = ndt),
+    do: {:ok, ndt}
   def cast(_),
     do: :error
 
-  defp from_parts(year, month, day, hour, min, sec) do
-    load({{year, month, day},{hour, min, sec}})
+  defp from_parts(year, month, day, hour, min, sec, usec) do
+    load({{year, month, day},{hour, min, sec, usec}})
   end
-  defp from_parts(_, _, _, _, _, _), do: :error
+  defp from_parts(_, _, _, _, _, _, _), do: :error
 
   @doc """
   Converts to erlang style tuples
   """
   def dump(%Kalends.NaiveDateTime{} = dt) do
-    {:ok, Kalends.NaiveDateTime.to_erl(dt)}
+    {:ok, Kalends.NaiveDateTime.to_micro_erl(dt)}
   end
 
   @doc """
   Converts erlang style tuples to `Kalends.NaiveDateTime`
   """
-  def load({{year, month, day}, {hour, min, sec}}) do
-    Kalends.NaiveDateTime.from_erl({{year, month, day}, {hour, min, sec}})
+  def load({{year, month, day}, {hour, min, sec, usec}}) do
+    Kalends.NaiveDateTime.from_erl({{year, month, day}, {hour, min, sec}}, usec)
   end
 end

@@ -22,7 +22,7 @@ defmodule Kalecto.Date do
   Casts to date.
   """
   def cast(<<year::32, ?-, month::16, ?-, day::16>>),
-    do: from_parts(to_li(year), to_i(month), to_i(day))
+    do: from_parts(to_i(year), to_i(month), to_i(day))
   def cast(%Kalends.Date{} = d),
     do: {:ok, d}
   def cast(_),

@@ -6,7 +6,7 @@ For saving dates, times and datetimes in Ecto.
 
 ```elixir
     defp deps do
-      [  {:kalecto, ">= 0.0.2"},  ]
+      [  {:kalecto, ">= 0.1.0"},  ]
     end
 ```
 The types are:
@@ -36,7 +36,7 @@ In your Ecto schema:
     field :nice_time, Kalecto.Time
     field :nice_datetime, Kalecto.DateTimeUTC
     field :another_datetime, Kalecto.NaiveDateTime
-    timestamps
+    timestamps type: Kalecto.DateTimeUTC
   end
 ```
 
@@ -47,7 +47,7 @@ Let's create a new DateTime to represent "now":
 
 ```elixir
     iex> example_to_be_saved_in_db = Kalends.DateTime.now_utc
-    %Kalends.DateTime{abbr: "UTC", day: 2, hour: 16, microsec: 245828, min: 48,
+    %Kalends.DateTime{abbr: "UTC", day: 2, hour: 16, usec: 245828, min: 48,
      month: 3, sec: 19, std_off: 0, timezone: "Etc/UTC", utc_off: 0, year: 2015}
 ```
 
@@ -55,7 +55,7 @@ Another way of getting a DateTime is parsing JavaScript style milliseconds:
 
 ```elixir
     iex> parsed_datetime = Kalends.DateTime.Parse.js_ms!("1425314899000")
-    %Kalends.DateTime{abbr: "UTC", day: 2, hour: 16, microsec: 0, min: 48, month: 3,
+    %Kalends.DateTime{abbr: "UTC", day: 2, hour: 16, usec: 0, min: 48, month: 3,
      sec: 19, std_off: 0, timezone: "Etc/UTC", utc_off: 0, year: 2015}
 ```
 
@@ -72,7 +72,7 @@ datetime to another time zone:
 
 ```elixir
     iex> example_loaded_from_db |> Kalends.DateTime.shift_zone!("Europe/Copenhagen")
-    %Kalends.DateTime{abbr: "CET", day: 2, hour: 17, microsec: nil, min: 48,
+    %Kalends.DateTime{abbr: "CET", day: 2, hour: 17, usec: nil, min: 48,
       month: 3, sec: 19, std_off: 0, timezone: "Europe/Copenhagen", utc_off: 3600,
       year: 2015}
 ```
@@ -94,8 +94,6 @@ Or format it via strftime:
 More information about Kalends functionality in the Kalends documentation: http://hexdocs.pm/kalends/
 
 ## Roadmap
-
-- Support for upcoming Ecto 0.9 and microseconds
 
 - The next planned feature is being able to save DateTime structs that are not
   UTC. Saved DateTimes should preserve the timezone, hour, minute etc. If a
