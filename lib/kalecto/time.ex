@@ -36,7 +36,6 @@ defmodule Kalecto.Time do
   defp from_parts(hour, min, sec) do
     Kalends.Time.from_erl({hour, min, sec})
   end
-  defp from_parts(_, _, _), do: :error
 
   @doc """
   Converts an `Ecto.Time` into a time triplet.

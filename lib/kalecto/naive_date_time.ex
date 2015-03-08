@@ -38,7 +38,6 @@ defmodule Kalecto.NaiveDateTime do
   defp from_parts(year, month, day, hour, min, sec, usec) do
     load({{year, month, day},{hour, min, sec, usec}})
   end
-  defp from_parts(_, _, _, _, _, _, _), do: :error
 
   @doc """
   Converts to erlang style tuples
