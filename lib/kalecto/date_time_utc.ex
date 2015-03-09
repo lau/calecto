@@ -55,6 +55,11 @@ defmodule Kalecto.DateTimeUTC do
   Converts erlang style tuples to `Kalends.DateTime`
   """
   def load({{year, month, day}, {hour, min, sec, usec}}) do
-    Kalends.DateTime.from_erl({{year, month, day}, {hour, min, sec}}, "Etc/UTC", usec)
+    { :ok,
+      %Kalends.DateTime{year: year, month: month, day: day, hour: hour, min: min,
+                      sec: sec, usec: usec, abbr: "UTC", timezone: "Etc/UTC",
+                      utc_off: 0, std_off: 0}
+    }
   end
+  def load(_), do: :error
 end
