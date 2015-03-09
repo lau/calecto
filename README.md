@@ -1,7 +1,7 @@
 Kalecto
 =======
 
-Glue between Kalends and Ecto.
+Glue between [Kalends](https://github.com/lau/kalends) and Ecto.
 For saving dates, times and datetimes in Ecto.
 
 ```elixir
@@ -9,14 +9,40 @@ For saving dates, times and datetimes in Ecto.
       [  {:kalecto, ">= 0.1.0"},  ]
     end
 ```
-The types are:
 
-| Ecto type             | Primitive type             | Kalends type
-| ----------------------|----------------------------|---------------------------|
-| Kalecto.Date          | date                       | Kalends.Date              |
-| Kalecto.Time          | time                       | Kalends.Time              |
-| Kalecto.DateTimeUTC   | datetime                   | Kalends.DateTime          |
-| Kalecto.NaiveDateTime | datetime                   | Kalends.NaiveDateTime     |
+## Super quick way to get started
+
+Here's how to display inserted_at and updated_at dates using the functionality
+of the Kalends library:
+
+- Add :kalecto to your deps in your mix.exs file (see above) and run `mix deps.get`
+- In your Ecto schema defintions, where you have a `timestamps line`, add ` type: Kalecto.DateTimeUTC` at the end of the line:
+
+```elixir
+timestamps type: Kalecto.DateTimeUTC
+```
+
+  This means that your timestamps will be loaded as Kalends.DateTime structs instead of Ecto.DateTime structs and you can use the formatting functionality in Kalends.
+
+- Format an inserted_at timestamp using Kalends:
+
+```elixir
+@post.inserted_at |> Kalends.DateTime.Format.strftime!("%A, %e %B %Y")
+```
+It will return: `Monday, 9 March 2015`
+
+There are other formatting functions. For instance: http timestamp, unix timestamp, RFC 3339 (ISO 8601). You can also shift the timestamp to another timezone in order to display what date and time it was in that particular timezone. See more in the [Kalends documentation](http://hexdocs.pm/kalends/).
+
+## The types
+
+If you have a primitive type as listed below you can swap it for a Kalecto type simply by adding the type to your Ecto schema.
+
+|  Primitive type             |Ecto type             |Kalends type
+| ----------------------------|----------------------|--------------------------|
+|  date                       |Kalecto.Date          |Kalends.Date              |
+|  time                       |Kalecto.Time          |Kalends.Time              |
+|  datetime                   |Kalecto.DateTimeUTC   |Kalends.DateTime          |
+|  datetime                   |Kalecto.NaiveDateTime |Kalends.NaiveDateTime     |
 
 If you have a datetime as a primitive type, you can use NaiveDateTime or DateTimeUTC.
 If you have a date as a primitive type, you can use Kalecto.Date.
@@ -91,7 +117,7 @@ Or format it via strftime:
     "The time is 16:48:19 and it is Monday."
 ```
 
-More information about Kalends functionality in the Kalends documentation: http://hexdocs.pm/kalends/
+More information about Kalends functionality in the [Kalends documentation](http://hexdocs.pm/kalends/).
 
 ## Roadmap
 
