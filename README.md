@@ -1,6 +1,10 @@
 Kalecto
 =======
 
+[![Build
+Status](https://travis-ci.org/lau/kalecto.svg?branch=master)](https://travis-ci.org/lau/kalecto)
+[![Hex Version](http://img.shields.io/hexpm/v/kalecto.svg?style=flat)](https://hex.pm/packages/kalecto)
+
 Glue between [Kalends](https://github.com/lau/kalends) and Ecto.
 For saving dates, times and datetimes in Ecto.
 
@@ -12,7 +16,7 @@ For saving dates, times and datetimes in Ecto.
 
 ## Super quick way to get started
 
-Here's how to display inserted_at and updated_at dates using the functionality
+Here's how to display `inserted_at` and `updated_at` dates using the functionality
 of the Kalends library:
 
 - Add :kalecto to your deps in your mix.exs file (see above) and run `mix deps.get`
@@ -24,12 +28,12 @@ timestamps type: Kalecto.DateTimeUTC
 
   This means that your timestamps will be loaded as Kalends.DateTime structs instead of Ecto.DateTime structs and you can use the formatting functionality in Kalends.
 
-- Format an inserted_at timestamp using Kalends:
+- Format an `inserted_at` timestamp using Kalends:
 
 ```elixir
 @post.inserted_at |> Kalends.DateTime.Format.strftime!("%A, %e %B %Y")
 ```
-It will return: `Monday, 9 March 2015`
+It will return for instance: `Monday, 9 March 2015`
 
 There are other formatting functions. For instance: http timestamp, unix timestamp, RFC 3339 (ISO 8601). You can also shift the timestamp to another timezone in order to display what date and time it was in that particular timezone. See more in the [Kalends documentation](http://hexdocs.pm/kalends/).
 
@@ -85,7 +89,7 @@ Another way of getting a DateTime is parsing JavaScript style milliseconds:
      sec: 19, std_off: 0, timezone: "Etc/UTC", utc_off: 0, year: 2015}
 ```
 
-Since the field nice_datetime is of the DateTimeUTC type, we can save
+Since the field `nice_datetime` is of the DateTimeUTC type, we can save
 Kalends.DateTime structs there if they are in the Etc/UTC timezone:
 
 ```elixir
