@@ -1,5 +1,10 @@
 # Changelog for Kalecto
 
+## [0.1.1] - 2015-03-13
+### Changed
+
+DateTimeUTC loading made faster.
+
 ## [0.1.0] - 2015-03-08
 ### Changed
 
