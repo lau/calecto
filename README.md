@@ -10,7 +10,7 @@ For saving dates, times and datetimes in Ecto.
 
 ```elixir
     defp deps do
-      [  {:kalecto, ">= 0.1.1"},  ]
+      [  {:kalecto, ">= 0.1.2"},  ]
     end
 ```
 
@@ -20,10 +20,11 @@ Here's how to display `inserted_at` and `updated_at` dates using the functionali
 of the Kalends library:
 
 - Add :kalecto to your deps in your mix.exs file (see above) and run `mix deps.get`
-- In your Ecto schema defintions, where you have a `timestamps line`, add ` type: Kalecto.DateTimeUTC` at the end of the line:
+- In your Ecto models, where you have a schema definition with a `timestamps` line, add `use Kalecto.Model` at the top of the module, below the line that says`use Ecto.Model`:
 
 ```elixir
-timestamps type: Kalecto.DateTimeUTC
+use Ecto.Model
+use Kalecto.Model
 ```
 
   This means that your timestamps will be loaded as Kalends.DateTime structs instead of Ecto.DateTime structs and you can use the formatting functionality in Kalends.
@@ -60,14 +61,20 @@ It is planned to include microseconds after a newer version of Ecto is released.
 In your Ecto schema:
 
 ```elixir
+defmodule Weather do
+  use Ecto.Model
+  use Kalecto.Model
+
   schema "weather" do
-    field :city, :string
-    field :nice_date, Kalecto.Date
-    field :nice_time, Kalecto.Time
-    field :nice_datetime, Kalecto.DateTimeUTC
+    field :city,             :string
+    field :nice_date,        Kalecto.Date
+    field :nice_time,        Kalecto.Time
+    field :nice_datetime,    Kalecto.DateTimeUTC
     field :another_datetime, Kalecto.NaiveDateTime
-    timestamps type: Kalecto.DateTimeUTC
+    timestamps
+    # the timestamps will be DateTimeUTC because of the `use Kalecto.Model` line
   end
+end
 ```
 
 If you have a Kalends DateTime in the Etc/UTC timezone
