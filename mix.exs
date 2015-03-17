@@ -10,26 +10,14 @@ defmodule Kalecto.Mixfile do
      deps: deps]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type `mix help compile.app` for more information
   def application do
     [applications: [:logger, :kalends]]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type `mix help deps` for more examples and options
   defp deps do
     [
       {:ecto, "~> 0.9.0"},
-      {:kalends, "~> 0.5.1"},
+      {:kalends, "~> 0.5.2"},
     ]
   end
 
