@@ -23,11 +23,18 @@ of the Kalends library:
 - In your Ecto models, where you have a schema definition with a `timestamps` line, add `use Kalecto.Model` at the top of the module, below the line that says`use Ecto.Model`:
 
 ```elixir
-use Ecto.Model
-use Kalecto.Model
+defmodule Weather do
+  use Ecto.Model
+  use Kalecto.Model
+
+  schema "weather" do
+    field :city, :string
+    timestamps
+  end
+end
 ```
 
-  This means that your timestamps will be loaded as Kalends.DateTime structs instead of Ecto.DateTime structs and you can use the formatting functionality in Kalends.
+This means that your timestamps will be loaded as Kalends.DateTime structs instead of Ecto.DateTime structs and you can use the formatting functionality in Kalends.
 
 - Format an `inserted_at` timestamp using Kalends:
 
