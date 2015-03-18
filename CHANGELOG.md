@@ -1,5 +1,11 @@
 # Changelog for Kalecto
 
+## [0.2.0] - 2015-03-18
+### Added
+
+Kalecto.DateTime added. The use of this type requires a composite
+Postgres type, which can be added with a migration.
+
 ## [0.1.2] - 2015-03-16
 ### Added
 

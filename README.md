@@ -16,11 +16,13 @@ For saving dates, times and datetimes in Ecto.
 
 ## Super quick way to get started
 
-Here's how to display `inserted_at` and `updated_at` dates using the functionality
-of the Kalends library:
+Here's how to display `inserted_at` and `updated_at` dates using the
+functionality of the Kalends library:
 
 - Add :kalecto to your deps in your mix.exs file (see above) and run `mix deps.get`
-- In your Ecto models, where you have a schema definition with a `timestamps` line, add `use Kalecto.Model` at the top of the module, below the line that says`use Ecto.Model`:
+- In your Ecto models, where you have a schema definition with a `timestamps`
+  line, add `use Kalecto.Model` at the top of the module, below the line that
+  says`use Ecto.Model`:
 
 ```elixir
 defmodule Weather do
@@ -34,7 +36,9 @@ defmodule Weather do
 end
 ```
 
-This means that your timestamps will be loaded as Kalends.DateTime structs instead of Ecto.DateTime structs and you can use the formatting functionality in Kalends.
+This means that your timestamps will be loaded as Kalends.DateTime structs
+instead of Ecto.DateTime structs and you can use the formatting functionality
+in Kalends.
 
 - Format an `inserted_at` timestamp using Kalends:
 
@@ -43,22 +47,34 @@ This means that your timestamps will be loaded as Kalends.DateTime structs inste
 ```
 It will return for instance: `Monday, 9 March 2015`
 
-There are other formatting functions. For instance: http timestamp, unix timestamp, RFC 3339 (ISO 8601). You can also shift the timestamp to another timezone in order to display what date and time it was in that particular timezone. See more in the [Kalends documentation](http://hexdocs.pm/kalends/).
+There are other formatting functions. For instance: http timestamp, unix
+timestamp, RFC 3339 (ISO 8601). You can also shift the timestamp to another
+timezone in order to display what date and time it was in that particular
+timezone. See more in the [Kalends documentation](http://hexdocs.pm/kalends/).
 
 ## The types
 
-If you have a primitive type as listed below you can swap it for a Kalecto type simply by adding the type to your Ecto schema.
+If you have a primitive type as listed below you can swap it for a Kalecto type
+simply by adding the type to your Ecto schema.
 
 |  Primitive type             |Ecto type             |Kalends type
-| ----------------------------|----------------------|--------------------------|
-|  date                       |Kalecto.Date          |Kalends.Date              |
-|  time                       |Kalecto.Time          |Kalends.Time              |
-|  datetime                   |Kalecto.DateTimeUTC   |Kalends.DateTime          |
-|  datetime                   |Kalecto.NaiveDateTime |Kalends.NaiveDateTime     |
+| ----------------------------|----------------------|------------------------|
+|  date                       |Kalecto.Date          |Kalends.Date            |
+|  time                       |Kalecto.Time          |Kalends.Time            |
+|  datetime                   |Kalecto.DateTimeUTC   |Kalends.DateTime        |
+|  datetime                   |Kalecto.NaiveDateTime |Kalends.NaiveDateTime   |
+|  kalends_datetime           |Kalecto.DateTime*     |Kalends.DateTime        |
 
-If you have a datetime as a primitive type, you can use NaiveDateTime or DateTimeUTC.
+If you have a datetime as a primitive type, you can use NaiveDateTime or
+DateTimeUTC.
 If you have a date as a primitive type, you can use Kalecto.Date.
 If you have a time as a primitive type, you can use Kalecto.Time.
+
+*) If you are using Postgres as a database you can also use the Kalecto.DateTime
+type. This allows you to save any Kalends.DateTime struct. This is useful for
+saving for instance future times for meetings in a certain timezone. Even if
+timezone rules change, the "wall time" will stay the same. See the
+"DateTime with Postgres" heading below.
 
 Microseconds of NaiveDateTime and DateTimeUTC are discarded/ignored if present.
 It is planned to include microseconds after a newer version of Ecto is released.
@@ -135,11 +151,18 @@ Or format it via strftime:
     "The time is 16:48:19 and it is Monday."
 ```
 
+## DateTime with Postgres
+
+If you are using Postgres, you can save and load DateTime structs that are not
+in the Etc/UTC timezone. This requires that a special type is added to the
+database. By running the following command you can generate a migration that
+adds this type:
+
+```
+    mix kalecto.add_type_migration
+```
+
+Then run the migration (`mix ecto.migrate`) and you can use the type
+`Kalecto.DateTime`
+
 More information about Kalends functionality in the [Kalends documentation](http://hexdocs.pm/kalends/).
-
-## Roadmap
-
-- The next planned feature is being able to save DateTime structs that are not
-  UTC. Saved DateTimes should preserve the timezone, hour, minute etc. If a
-  timezone's rules/offset is changed the best case scenario is that the only
-  thing that changes when the DateTime is loaded from the db is the offset.
