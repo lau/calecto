@@ -57,13 +57,13 @@ timezone. See more in the [Kalends documentation](http://hexdocs.pm/kalends/).
 If you have a primitive type as listed below you can swap it for a Kalecto type
 simply by adding the type to your Ecto schema.
 
-|  Primitive type             |Ecto type             |Kalends type
-| ----------------------------|----------------------|------------------------|
-|  date                       |Kalecto.Date          |Kalends.Date            |
-|  time                       |Kalecto.Time          |Kalends.Time            |
-|  datetime                   |Kalecto.DateTimeUTC   |Kalends.DateTime        |
-|  datetime                   |Kalecto.NaiveDateTime |Kalends.NaiveDateTime   |
-|  kalends_datetime           |Kalecto.DateTime*     |Kalends.DateTime        |
+| Primitive type            | Ecto type             | Kalends type            |
+| ------------------------- | --------------------- | ----------------------- |
+| date                      | Kalecto.Date          | Kalends.Date            |
+| time                      | Kalecto.Time          | Kalends.Time            |
+| datetime                  | Kalecto.DateTimeUTC   | Kalends.DateTime        |
+| datetime                  | Kalecto.NaiveDateTime | Kalends.NaiveDateTime   |
+| kalends_datetime          | Kalecto.DateTime*     | Kalends.DateTime        |
 
 If you have a datetime as a primitive type, you can use NaiveDateTime or
 DateTimeUTC.
@@ -164,5 +164,9 @@ adds this type:
 
 Then run the migration (`mix ecto.migrate`) and you can use the type
 `Kalecto.DateTime`
+
+## Documentation
+
+[Documentation for Kalecto is available at hexdocs.](http://hexdocs.pm/kalecto/)
 
 More information about Kalends functionality in the [Kalends documentation](http://hexdocs.pm/kalends/).

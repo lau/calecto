@@ -18,6 +18,9 @@ defmodule Kalecto.Mixfile do
     [
       {:ecto, "~> 0.9.0"},
       {:kalends, "~> 0.6.0"},
+
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.7", only: :dev},
     ]
   end
 
