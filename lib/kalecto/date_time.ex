@@ -18,6 +18,11 @@ defmodule Kalecto.DateTime do
   defdelegate blank?(value), to: Ecto.Type
 
   @doc """
+  Cast DateTime
+  """
+  def cast(%Kalends.DateTime{} = dt), do: {:ok, dt}
+
+  @doc """
   Converts to a tuple of:
     - erlang style tuples with microseconds added
     - total_offset in seconds

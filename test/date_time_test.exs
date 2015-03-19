@@ -13,4 +13,8 @@ defmodule DateTimeTest do
   test "load DateTime" do
     assert Kalecto.DateTime.load({{{2001, 1, 1}, {1, 2, 3, 2345}}, -10800, "America/Montevideo"}) == {:ok, @mvd_kalends_dt_with_usec}
   end
+
+  test "cast DateTime" do
+    assert Kalecto.DateTime.cast(@mvd_kalends_dt_with_usec) == {:ok, @mvd_kalends_dt_with_usec}
+  end
 end
