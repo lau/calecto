@@ -1,5 +1,10 @@
 # Changelog for Kalecto
 
+## [0.2.1] - 2015-03-19
+### Added
+
+Kalecto.DateTime cast function.
+
 ## [0.2.0] - 2015-03-18
 ### Added
 
