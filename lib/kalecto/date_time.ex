@@ -10,7 +10,7 @@ defmodule Kalecto.DateTime do
   @doc """
   The Ecto primitive type.
   """
-  def type, do: :datetime
+  def type, do: :kalends_datetime
 
   @doc """
   Datetimes are blank when given as strings and the string is blank.
@@ -42,8 +42,8 @@ defmodule Kalecto.DateTime do
     - total_offset in seconds
     - timezone
   """
-  def load({dt, utc_off, timezone}) do
-    Kalends.DateTime.from_micro_erl_total_off(dt, timezone, utc_off)
+  def load({dt, total_off, timezone}) do
+    Kalends.DateTime.from_micro_erl_total_off(dt, timezone, total_off)
   end
 
   def load(_), do: :error
