@@ -59,16 +59,18 @@ simply by adding the type to your Ecto schema.
 
 | Primitive type            | Ecto type             | Kalends type            |
 | ------------------------- | --------------------- | ----------------------- |
-| date                      | Kalecto.Date          | Kalends.Date            |
-| time                      | Kalecto.Time          | Kalends.Time            |
-| datetime                  | Kalecto.DateTimeUTC   | Kalends.DateTime        |
-| datetime                  | Kalecto.NaiveDateTime | Kalends.NaiveDateTime   |
-| kalends_datetime          | Kalecto.DateTime*     | Kalends.DateTime        |
+| :date                     | Kalecto.Date          | Kalends.Date            |
+| :time                     | Kalecto.Time          | Kalends.Time            |
+| :datetime                 | Kalecto.DateTimeUTC   | Kalends.DateTime        |
+| :datetime                 | Kalecto.NaiveDateTime | Kalends.NaiveDateTime   |
+| :kalends_datetime         | Kalecto.DateTime*     | Kalends.DateTime        |
 
 If you have a datetime as a primitive type, you can use NaiveDateTime or
 DateTimeUTC.
 If you have a date as a primitive type, you can use Kalecto.Date.
 If you have a time as a primitive type, you can use Kalecto.Time.
+
+Put the primitive type in your migrations and the Ecto type in your schema.
 
 *) If you are using Postgres as a database you can also use the Kalecto.DateTime
 type. This allows you to save any Kalends.DateTime struct. This is useful for
@@ -162,8 +164,11 @@ adds this type:
     mix kalecto.add_type_migration
 ```
 
-Then run the migration (`mix ecto.migrate`) and you can use the type
-`Kalecto.DateTime`
+Then run the migration (`mix ecto.migrate`). This adds the `kalends_datetime`
+type to the Postgres database. In migrations you can use `:kalends_datetime`.
+
+In the schemas you can use the type `Kalecto.DateTime` for fields that have
+been created with :kalends_datetime type in migrations.
 
 ## Documentation
 
