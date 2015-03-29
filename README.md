@@ -78,9 +78,6 @@ saving for instance future times for meetings in a certain timezone. Even if
 timezone rules change, the "wall time" will stay the same. See the
 "DateTime with Postgres" heading below.
 
-Microseconds of NaiveDateTime and DateTimeUTC are discarded/ignored if present.
-It is planned to include microseconds after a newer version of Ecto is released.
-
 ## Example usage
 
 In your Ecto schema:
@@ -91,12 +88,12 @@ defmodule Weather do
   use Kalecto.Model
 
   schema "weather" do
-    field :city,             :string
+    field :temperature,      :integer
     field :nice_date,        Kalecto.Date
     field :nice_time,        Kalecto.Time
     field :nice_datetime,    Kalecto.DateTimeUTC
     field :another_datetime, Kalecto.NaiveDateTime
-    timestamps
+    timestamps usec: true
     # the timestamps will be DateTimeUTC because of the `use Kalecto.Model` line
   end
 end
