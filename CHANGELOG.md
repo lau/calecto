@@ -1,5 +1,12 @@
 # Changelog for Kalecto
 
+## [0.2.2] - 2015-04-03
+### Changed
+
+- Corrected primitive type in Kalecto.DateTime to :kalends_datetime
+- Updated Kalends version to 0.6.2
+- Support Ecto ~> 0.10.1
+
 ## [0.2.1] - 2015-03-19
 ### Added
 

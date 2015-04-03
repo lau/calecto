@@ -10,7 +10,7 @@ For saving dates, times and datetimes in Ecto.
 
 ```elixir
     defp deps do
-      [ {:kalecto, "~> 0.2.1"}, ]
+      [ {:kalecto, "~> 0.2.2"}, ]
     end
 ```
 
