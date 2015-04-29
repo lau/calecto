@@ -1,6 +1,6 @@
 # Changelog for Kalecto
 
-## [0.3.0] - 2015-04-29
+## [0.3.1] - 2015-04-29
 ### Changed
 Change in Ecto.Model:
 Ecto.Model does no longer call `use Kalecto.Model`.
