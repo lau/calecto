@@ -1,5 +1,28 @@
 # Changelog for Kalecto
 
+## [0.3.0] - 2015-04-29
+### Changed
+Change in Ecto.Model:
+Ecto.Model does no longer call `use Kalecto.Model`.
+
+### Upgrade instructions from 0.2.x
+
+In case you have `use Kalecto.Model` and do not have
+`use Ecto.Model` in the same module, you should add
+`use Ecto.Model` so that both are present. Example:
+
+```elixir
+defmodule Weather do
+  use Ecto.Model
+  use Kalecto.Model
+
+  schema "weather" do
+    field :city, :string
+    timestamps
+  end
+end
+```
+
 ## [0.2.2] - 2015-04-03
 ### Changed
 

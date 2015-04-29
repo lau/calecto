@@ -10,7 +10,7 @@ For saving dates, times and datetimes in Ecto.
 
 ```elixir
     defp deps do
-      [ {:kalecto, "~> 0.2.2"}, ]
+      [ {:kalecto, "~> 0.3.0"}, ]
     end
 ```
 
@@ -21,10 +21,11 @@ functionality of the Kalends library:
 
 - Add :kalecto to your deps in your mix.exs file (see above) and run `mix deps.get`
 - In your Ecto models, where you have a schema definition with a `timestamps`
-  line, replace `use Ecto.Model` with `use Kalecto.Model`:
+  line, under the line that says `use Ecto.Model` add `use Kalecto.Model` like so:
 
 ```elixir
 defmodule Weather do
+  use Ecto.Model
   use Kalecto.Model
 
   schema "weather" do
@@ -82,7 +83,8 @@ In your Ecto schema:
 
 ```elixir
 defmodule Weather do
-  use Kalecto.Model # This line replaces 'use Ecto.Model'
+  use Ecto.Model
+  use Kalecto.Model
 
   schema "weather" do
     field :temperature,      :integer

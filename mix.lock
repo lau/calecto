@@ -1,6 +1,6 @@
 %{"decimal": {:hex, :decimal, "1.1.0"},
-  "earmark": {:hex, :earmark, "0.1.13"},
-  "ecto": {:hex, :ecto, "0.10.1"},
+  "earmark": {:hex, :earmark, "0.1.15"},
+  "ecto": {:hex, :ecto, "0.10.2"},
   "ex_doc": {:hex, :ex_doc, "0.7.2"},
   "kalends": {:hex, :kalends, "0.6.2"},
   "poolboy": {:hex, :poolboy, "1.4.2"},
