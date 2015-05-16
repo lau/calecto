@@ -1,5 +1,12 @@
 # Changelog for Kalecto
 
+## [0.3.2] - 2015-05-16
+
+### Changed
+
+Allow higher versions of Ecto. Can now be used with
+Ecto 0.9.x or higher 0.x versions.
+
 ## [0.3.1] - 2015-04-29
 ### Changed
 Change in Ecto.Model:
