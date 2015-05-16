@@ -16,7 +16,7 @@ defmodule Kalecto.Mixfile do
 
   defp deps do
     [
-      {:ecto, "~> 0.9.0 or ~> 0.10.1"},
+      {:ecto, "~> 0.9.0 or >= 0.10.1"},
       {:kalends, "~> 0.6.2"},
 
       {:earmark, "~> 0.1", only: :dev},
