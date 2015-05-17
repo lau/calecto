@@ -10,7 +10,7 @@ For saving dates, times and datetimes in Ecto.
 
 ```elixir
     defp deps do
-      [ {:kalecto, "~> 0.3.2"}, ]
+      [ {:kalecto, "~> 0.3.3"}, ]
     end
 ```
 
@@ -26,7 +26,7 @@ functionality of the Kalends library:
 ```elixir
 defmodule Weather do
   use Ecto.Model
-  use Kalecto.Model
+  use Kalecto.Model, usec: true
 
   schema "weather" do
     field :city, :string

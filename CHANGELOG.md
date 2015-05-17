@@ -1,7 +1,21 @@
 # Changelog for Kalecto
 
-## [0.3.2] - 2015-05-16
+## [0.3.3] - 2015-05-17
+### Fixed
 
+- Fixed: `use Kalecto.Model` would not work on versions 0.10 and higher
+
+### Added
+
+`usec: true` option can now be added to `use Kalecto.Model`.
+Like this: `use Kalecto.Model, usec: true`
+This enables microseconds in inserted_at/updated_at timestamps.
+
+### Changed
+
+- No longer compatible with version 0.9.x
+
+## [0.3.2] - 2015-05-16
 ### Changed
 
 Allow higher versions of Ecto. Can now be used with
