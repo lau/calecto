@@ -1,3 +1,3 @@
-defmodule Kalecto do
+defmodule Calecto do
   @moduledoc File.read!("README.md")
 end

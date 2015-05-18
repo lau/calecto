@@ -1,4 +1,4 @@
-defmodule KalectoTest do
+defmodule CalectoTest do
   use ExUnit.Case
 
   test "the truth" do

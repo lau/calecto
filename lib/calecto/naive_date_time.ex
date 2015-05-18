@@ -1,9 +1,9 @@
-defmodule Kalecto.DateTimeUTC do
-  require Kalends.DateTime
+defmodule Calecto.NaiveDateTime do
+  require Calendar.NaiveDateTime
   import Ecto.DateTime.Util
 
   @moduledoc """
-  Kalends DateTime for Ecto for representing only UTC datetimes
+  Calendar NaiveDateTime for Ecto
   """
 
   @behaviour Ecto.Type
@@ -30,9 +30,8 @@ defmodule Kalecto.DateTimeUTC do
       :error
     end
   end
-
-  def cast(%Kalends.DateTime{timezone: "Etc/UTC"} = dt),
-    do: {:ok, dt}
+  def cast(%Calendar.NaiveDateTime{} = ndt),
+    do: {:ok, ndt}
   def cast(_),
     do: :error
 
@@ -41,25 +40,16 @@ defmodule Kalecto.DateTimeUTC do
   end
 
   @doc """
-  Converts to erlang style tuples with microseconds added
+  Converts to erlang style tuples
   """
-  def dump(%Kalends.DateTime{timezone: timezone}) when timezone != "Etc/UTC" do
-    :error
+  def dump(%Calendar.NaiveDateTime{} = dt) do
+    {:ok, Calendar.NaiveDateTime.to_micro_erl(dt)}
   end
-  def dump(%Kalends.DateTime{} = dt) do
-    {:ok, Kalends.DateTime.to_micro_erl(dt) }
-  end
-  def dump(_), do: :error
 
   @doc """
-  Converts erlang style tuples to `Kalends.DateTime`
+  Converts erlang style tuples to `Calendar.NaiveDateTime`
   """
   def load({{year, month, day}, {hour, min, sec, usec}}) do
-    { :ok,
-      %Kalends.DateTime{year: year, month: month, day: day, hour: hour, min: min,
-                      sec: sec, usec: usec, abbr: "UTC", timezone: "Etc/UTC",
-                      utc_off: 0, std_off: 0}
-    }
+    Calendar.NaiveDateTime.from_erl({{year, month, day}, {hour, min, sec}}, usec)
   end
-  def load(_), do: :error
 end

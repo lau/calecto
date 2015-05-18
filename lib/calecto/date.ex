@@ -1,9 +1,9 @@
-defmodule Kalecto.Date do
-  require Kalends.Date
+defmodule Calecto.Date do
+  require Calendar.Date
   import Ecto.DateTime.Util
 
   @moduledoc """
-  Kalends Date for Ecto
+  Calendar Date for Ecto
   """
 
   @behaviour Ecto.Type
@@ -23,13 +23,13 @@ defmodule Kalecto.Date do
   """
   def cast(<<year::32, ?-, month::16, ?-, day::16>>),
     do: from_parts(to_i(year), to_i(month), to_i(day))
-  def cast(%Kalends.Date{} = d),
+  def cast(%Calendar.Date{} = d),
     do: {:ok, d}
   def cast(_),
     do: :error
 
   defp from_parts(year, month, day) when is_date(year, month, day) do
-    Kalends.Date.from_erl({year, month, day})
+    Calendar.Date.from_erl({year, month, day})
   end
 
   defp from_parts(_, _, _), do: :error
@@ -37,14 +37,14 @@ defmodule Kalecto.Date do
   @doc """
   Converts to erlang style triplet
   """
-  def dump(%Kalends.Date{} = date) do
-    {:ok, Kalends.Date.to_erl(date)}
+  def dump(%Calendar.Date{} = date) do
+    {:ok, Calendar.Date.to_erl(date)}
   end
 
   @doc """
-  Converts erlang style triplet to `Kalends.Date`
+  Converts erlang style triplet to `Calendar.Date`
   """
   def load({year, month, day}) do
-    Kalends.Date.from_erl({year, month, day})
+    Calendar.Date.from_erl({year, month, day})
   end
 end

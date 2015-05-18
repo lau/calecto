@@ -1,9 +1,9 @@
-defmodule Kalecto.Time do
-  require Kalends.Time
+defmodule Calecto.Time do
+  require Calendar.Time
   import Ecto.DateTime.Util
 
   @moduledoc """
-  Kalends Time for Ecto
+  Calendar Time for Ecto
   """
 
   @behaviour Ecto.Type
@@ -28,26 +28,26 @@ defmodule Kalecto.Time do
       :error
     end
   end
-  def cast(%Kalends.Time{} = t),
+  def cast(%Calendar.Time{} = t),
     do: {:ok, t}
   def cast(_),
     do: :error
 
   defp from_parts(hour, min, sec) do
-    Kalends.Time.from_erl({hour, min, sec})
+    Calendar.Time.from_erl({hour, min, sec})
   end
 
   @doc """
   Converts an `Ecto.Time` into a time triplet.
   """
-  def dump(%Kalends.Time{} = time) do
-    {:ok, Kalends.Time.to_erl(time)}
+  def dump(%Calendar.Time{} = time) do
+    {:ok, Calendar.Time.to_erl(time)}
   end
 
   @doc """
   Converts a time triplet into an `Ecto.Time`.
   """
   def load({hour, min, sec}) do
-    Kalends.Time.from_erl({hour, min, sec})
+    Calendar.Time.from_erl({hour, min, sec})
   end
 end

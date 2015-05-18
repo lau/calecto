@@ -1,9 +1,9 @@
-defmodule Mix.Tasks.Kalecto.AddTypeMigration do
+defmodule Mix.Tasks.Calecto.AddTypeMigration do
   use Mix.Task
   import Mix.Generator
   import Mix.Ecto
 
-  @migration_name "AddKalendsDateTimeType"
+  @migration_name "AddCalendarDateTimeType"
 
   def run(args) do
     Mix.Task.run "app.start", args
@@ -18,8 +18,8 @@ defmodule Mix.Tasks.Kalecto.AddTypeMigration do
   end
 
   defp timestamp do
-    Kalends.DateTime.now_utc
-    |> Kalends.DateTime.Format.rfc3339(0)
+    Calendar.DateTime.now_utc
+    |> Calendar.DateTime.Format.rfc3339(0)
     |> String.replace(~r/[^0-9]/, "")
   end
 
@@ -28,14 +28,14 @@ defmodule Mix.Tasks.Kalecto.AddTypeMigration do
     use Ecto.Migration
 
     def up do
-      execute "CREATE TYPE kalends_datetime
+      execute "CREATE TYPE calendar_datetime
                AS (wall_time timestamp,
                    total_off integer,
                    timezone  varchar(48))"
     end
 
     def down do
-      execute "DROP TYPE kalends_datetime"
+      execute "DROP TYPE calendar_datetime"
     end
   end
   """

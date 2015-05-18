@@ -2,6 +2,6 @@
   "earmark": {:hex, :earmark, "0.1.16"},
   "ecto": {:hex, :ecto, "0.11.2"},
   "ex_doc": {:hex, :ex_doc, "0.7.2"},
-  "kalends": {:hex, :kalends, "0.6.5"},
+  "calendar": {:hex, :calendar, "0.6.6"},
   "poolboy": {:hex, :poolboy, "1.4.2"},
   "tzdata": {:hex, :tzdata, "0.1.5"}}

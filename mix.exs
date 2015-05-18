@@ -1,8 +1,8 @@
-defmodule Kalecto.Mixfile do
+defmodule Calecto.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :kalecto,
+    [app: :calecto,
      version: "0.3.3",
      elixir: "~> 1.0",
      package: package,
@@ -11,13 +11,13 @@ defmodule Kalecto.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :kalends]]
+    [applications: [:logger, :calendar]]
   end
 
   defp deps do
     [
       {:ecto, "~> 0.10"},
-      {:kalends, "~> 0.6.2"},
+      {:calendar, "~> 0.6.2"},
 
       {:earmark, "~> 0.1", only: :dev},
       {:ex_doc, "~> 0.7", only: :dev},
@@ -27,15 +27,15 @@ defmodule Kalecto.Mixfile do
   defp package do
     %{
        contributors: ["Lau Taarnskov"],
-       links: %{ "GitHub" => "https://github.com/lau/kalecto"},
+       links: %{ "GitHub" => "https://github.com/lau/calecto"},
        files: ~w(lib priv mix.exs README* LICENSE*
                     license* CHANGELOG* changelog* src) }
   end
 
   defp description do
     """
-    Library for using Kalends with Ecto.
-    This lets you save Kalends types in Ecto and work
+    Library for using Calendar with Ecto.
+    This lets you save Calendar types in Ecto and work
     with date-times in multiple timezones.
     """
   end
