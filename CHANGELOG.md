@@ -1,5 +1,11 @@
 # Changelog for Calecto
 
+## [0.3.4] - 2015-05-18
+### Changed
+
+- Changed name from Kalecto to Calecto
+- Uses Calendar library instead of Kalends
+
 ## [0.3.3] - 2015-05-17
 ### Fixed
 
