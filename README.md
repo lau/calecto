@@ -1,18 +1,34 @@
 Calecto
 =======
+### (formerly known as Kalecto)
 
 [![Build
 Status](https://travis-ci.org/lau/calecto.svg?branch=master)](https://travis-ci.org/lau/calecto)
 [![Hex Version](http://img.shields.io/hexpm/v/calecto.svg?style=flat)](https://hex.pm/packages/calecto)
 
 Glue between [Calendar](https://github.com/lau/calendar) and Ecto.
-For saving dates, times and datetimes in Ecto.
+For saving dates, times and datetimes in Ecto. Instead of using the Ecto
+types for Date, Time and DateTime, you can access the features of the Calendar
+library. With timezone awareness, parsing, and formatting functionality.
 
 ```elixir
-    defp deps do
-      [ {:calecto, "~> 0.3.4"}, ]
-    end
+defp deps do
+  [ {:calecto, "~> 0.3.4"}, ]
+end
 ```
+## Name change from Kalecto, upgrade instructions.
+
+For existing users of Kalecto: Kalends has changed its name to Calendar. And
+because of this, Kalecto is now called Calecto with a C. It is not because
+of numerology, but because it makes more sense that both libraries start
+with the same letter :wink: To upgrade:
+
+- In your code replace all instances of `Kalecto` with `Calecto`
+- In your code replace all instances of `:kalecto` with `:calecto`
+- In a similair fashion replace `Kalends` with `Calendar` and `:kalends` with
+  `:calendar`
+- In your `mix.exs` file make sure you are specifying a valid version of :calecto
+  (see newest version above)
 
 ## Super quick way to get started
 
@@ -20,7 +36,25 @@ Here's how to display `inserted_at` and `updated_at` dates using the
 functionality of the Calendar library:
 
 - Add :calecto to your deps in your mix.exs file (see above) and run `mix deps.get`
-- In your Ecto models, where you have a schema definition with a `timestamps`
+
+### If you are using Phoenix
+
+- If you are Phoenix you can add the line `use Calecto.Model` in the file
+`web/web.ex` in the `model` function definition like so:
+
+```elixir
+def model do
+  quote do
+    use Ecto.Model
+    use Calecto.Model, usec: true
+  end
+end
+```
+
+### If you are not using Phoenix
+
+- An alternative method to adding the line in `web/web.ex` is the following:
+  In your Ecto models, where you have a schema definition with a `timestamps`
   line, under the line that says `use Ecto.Model` add `use Calecto.Model` like so:
 
 ```elixir
@@ -34,6 +68,8 @@ defmodule Weather do
   end
 end
 ```
+
+### Formatting timestamps
 
 This means that your timestamps will be loaded as Calendar.DateTime structs
 instead of Ecto.DateTime structs and you can use the formatting functionality
@@ -57,17 +93,18 @@ If you have a primitive type as listed below you can swap it for a Calecto type
 simply by adding the type to your Ecto schema.
 
 | Primitive type            | Ecto type             | Calendar type            |
-| ------------------------- | --------------------- | ----------------------- |
+| ------------------------- | --------------------- | ------------------------ |
+| *Used in migrations*      | *Used in schemas*     | *What is persisted*      |
 | :date                     | Calecto.Date          | Calendar.Date            |
 | :time                     | Calecto.Time          | Calendar.Time            |
 | :datetime                 | Calecto.DateTimeUTC   | Calendar.DateTime        |
 | :datetime                 | Calecto.NaiveDateTime | Calendar.NaiveDateTime   |
-| :calendar_datetime         | Calecto.DateTime*     | Calendar.DateTime        |
+| :calendar_datetime        | Calecto.DateTime*     | Calendar.DateTime        |
 
-If you have a datetime as a primitive type, you can use NaiveDateTime or
-DateTimeUTC.
-If you have a date as a primitive type, you can use Calecto.Date.
-If you have a time as a primitive type, you can use Calecto.Time.
+If you have a `datetime` as a primitive type, you can use `Calecto.NaiveDateTime` or
+`Calecto.DateTimeUTC`.
+If you have a `date` as a primitive type, you can use `Calecto.Date`.
+If you have a `time` as a primitive type, you can use `Calecto.Time`.
 
 Put the primitive type in your migrations and the Ecto type in your schema.
 
@@ -84,7 +121,7 @@ In your Ecto schema:
 ```elixir
 defmodule Weather do
   use Ecto.Model
-  use Calecto.Model
+  use Calecto.Model, usec: true
 
   schema "weather" do
     field :temperature,      :integer

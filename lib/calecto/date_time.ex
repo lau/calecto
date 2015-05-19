@@ -2,7 +2,9 @@ defmodule Calecto.DateTime do
   require Calendar.DateTime
 
   @moduledoc """
-  Calendar DateTime for Ecto for representing only UTC datetimes
+  Calendar DateTime for Ecto for representing datetimes in any timezone.
+
+  This type is only compatible with Postgres.
   """
 
   @behaviour Ecto.Type
