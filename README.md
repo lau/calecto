@@ -13,22 +13,9 @@ library. With timezone awareness, parsing, and formatting functionality.
 
 ```elixir
 defp deps do
-  [ {:calecto, "~> 0.3.4"}, ]
+  [ {:calecto, "~> 0.3.5"}, ]
 end
 ```
-## Name change from Kalecto, upgrade instructions.
-
-For existing users of Kalecto: Kalends has changed its name to Calendar. And
-because of this, Kalecto is now called Calecto with a C. It is not because
-of numerology, but because it makes more sense that both libraries start
-with the same letter :wink: To upgrade:
-
-- In your code replace all instances of `Kalecto` with `Calecto`
-- In your code replace all instances of `:kalecto` with `:calecto`
-- In a similair fashion replace `Kalends` with `Calendar` and `:kalends` with
-  `:calendar`
-- In your `mix.exs` file make sure you are specifying a valid version of :calecto
-  (see newest version above)
 
 ## Super quick way to get started
 
@@ -208,3 +195,17 @@ been created with :calendar_datetime type in migrations.
 [Documentation for Calecto is available at hexdocs.](http://hexdocs.pm/calecto/)
 
 More information about Calendar functionality in the [Calendar documentation](http://hexdocs.pm/calendar/).
+
+## Name change from Kalecto, upgrade instructions.
+
+For existing users of Kalecto: Kalends has changed its name to Calendar. And
+because of this, Kalecto is now called Calecto with a C. It is not because
+of numerology, but because it makes more sense that both libraries start
+with the same letter :wink: To upgrade:
+
+- In your code replace all instances of `Kalecto` with `Calecto`
+- In your code replace all instances of `:kalecto` with `:calecto`
+- In a similair fashion replace `Kalends` with `Calendar` and `:kalends` with
+  `:calendar`
+- In your `mix.exs` file make sure you are specifying a valid version of :calecto
+  (see newest version above)
