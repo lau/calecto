@@ -1,5 +1,19 @@
 # Changelog for Calecto
 
+## [0.3.6] - 2015-07-13
+### Changed
+
+- Added compatibility with Calendar 0.8.0
+
+### Fixed
+
+- add_type_migration mix task had wrong file name (started with kalecto)
+
+## [0.3.5] - 2015-07-08
+### Changed
+
+- Added compatibility with Calendar 0.7.0
+
 ## [0.3.4] - 2015-05-18
 ### Changed
 

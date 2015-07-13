@@ -13,7 +13,7 @@ library. With timezone awareness, parsing, and formatting functionality.
 
 ```elixir
 defp deps do
-  [ {:calecto, "~> 0.3.5"}, ]
+  [ {:calecto, "~> 0.3.6"}, ]
 end
 ```
 
@@ -65,7 +65,7 @@ in Calendar.
 - Format an `inserted_at` timestamp using Calendar:
 
 ```elixir
-@post.inserted_at |> Calendar.DateTime.Format.strftime!("%A, %e %B %Y")
+@post.inserted_at |> Calendar.Strftime.strftime!("%A, %e %B %Y")
 ```
 It will return for instance: `Monday, 9 March 2015`
 
@@ -169,7 +169,7 @@ Or we could get the unix timestamp:
 Or format it via strftime:
 
 ```elixir
-    iex> example_loaded_from_db |> Calendar.DateTime.Format.strftime!("The time is %T and it is %A.")
+    iex> example_loaded_from_db |> Calendar.Strftime.strftime!("The time is %T and it is %A.")
     "The time is 16:48:19 and it is Monday."
 ```
 
