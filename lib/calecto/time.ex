@@ -50,4 +50,8 @@ defmodule Calecto.Time do
   def load({hour, min, sec}) do
     Calendar.Time.from_erl({hour, min, sec})
   end
+
+  def load({hour, min, sec, usec}) do
+    Calendar.Time.from_erl({hour, min, sec}, usec)
+  end
 end
