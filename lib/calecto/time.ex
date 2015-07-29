@@ -30,6 +30,10 @@ defmodule Calecto.Time do
   end
   def cast(%Calendar.Time{} = t),
     do: {:ok, t}
+  def cast(%{"hour" => hour, "min" => min, "sec" => sec}),
+    do: from_parts(to_i(hour), to_i(min), to_i(sec))
+  def cast(%{"hour" => hour, "min" => min}),
+    do: from_parts(to_i(hour), to_i(min), to_i(0))
   def cast(_),
     do: :error
 
