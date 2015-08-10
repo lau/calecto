@@ -21,7 +21,7 @@ defmodule Calecto.Date do
   @doc """
   Casts to date.
   """
-  def cast(<<year::32, ?-, month::16, ?-, day::16>>),
+  def cast(<<year::4-bytes, ?-, month::2-bytes, ?-, day::2-bytes>>),
     do: from_parts(to_i(year), to_i(month), to_i(day))
   def cast(%Calendar.Date{} = d),
     do: {:ok, d}
