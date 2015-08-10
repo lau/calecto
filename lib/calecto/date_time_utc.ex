@@ -1,6 +1,6 @@
 defmodule Calecto.DateTimeUTC do
   require Calendar.DateTime
-  import Ecto.DateTime.Util
+  import Calecto.Utils
 
   @moduledoc """
   Calendar DateTime for Ecto for representing only UTC datetimes

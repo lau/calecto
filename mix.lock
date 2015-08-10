@@ -1,7 +1,7 @@
 %{"calendar": {:hex, :calendar, "0.8.1"},
   "decimal": {:hex, :decimal, "1.1.0"},
   "earmark": {:hex, :earmark, "0.1.17"},
-  "ecto": {:hex, :ecto, "0.13.1"},
-  "ex_doc": {:hex, :ex_doc, "0.7.3"},
+  "ecto": {:hex, :ecto, "0.15.0"},
+  "ex_doc": {:hex, :ex_doc, "0.8.0"},
   "poolboy": {:hex, :poolboy, "1.5.1"},
   "tzdata": {:hex, :tzdata, "0.1.6"}}

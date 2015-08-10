@@ -3,7 +3,6 @@ defmodule DateTest do
 
   @date %Calendar.Date{day: 29, month: 7, year: 2015}
   @string_date "2015-07-29"
-  # @map_date %{"day" => "29", "month" => "7", "year" => "2015"}
   @tuple_date {2015, 7, 29}
 
 

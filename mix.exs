@@ -16,11 +16,11 @@ defmodule Calecto.Mixfile do
 
   defp deps do
     [
-      {:ecto, "~> 0.10"},
+      {:ecto, "~> 0.15"},
       {:calendar, "~> 0.8.1"},
 
       {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.7", only: :dev},
+      {:ex_doc, "~> 0.8", only: :dev},
     ]
   end
 
