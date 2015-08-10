@@ -45,9 +45,7 @@ defmodule Calecto.Time do
   Converts an `Ecto.Time` into a time tuple.
   """
   def dump(%Calendar.Time{} = time) do
-    # TODO: Use Calendar.Time.to_micro_erl/1 if exists
-    # {:ok, Calendar.Time.to_micro_erl(time)}
-    {:ok, {time.hour, time.min, time.sec, (if time.usec, do: time.usec, else: 0)}}
+    {:ok, Calendar.Time.to_micro_erl(time)}
   end
 
   @doc """

@@ -1,4 +1,3 @@
-
 defmodule DateTest do
   use ExUnit.Case
 
@@ -19,6 +18,5 @@ defmodule DateTest do
   test "cast Date" do
     assert Calecto.Date.cast(@date) == {:ok, @date}
     assert Calecto.Date.cast(@string_date) == {:ok, @date}
-    # assert Calecto.Date.cast(@map_date) == {:ok, @date}
   end
 end
