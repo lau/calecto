@@ -10,6 +10,10 @@ defmodule Calecto.Utils do
   def usec(rest) when rest in ["", "Z"], do: 0
   def usec(_), do: nil
 
+  def to_i(int) when is_integer(int) do
+    int
+  end
+
   def to_i(string) do
     {int, _} = Integer.parse(string)
     int
