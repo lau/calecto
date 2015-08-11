@@ -8,7 +8,6 @@ defmodule Mix.Tasks.Calecto.AddTypeMigration do
   def run(args) do
     Mix.Task.run "app.start", args
     repo = parse_repo(args)
-    ensure_repo(repo)
     filename = "#{timestamp}_add_datetime_type.exs"
     path = Path.relative_to(migrations_path(repo), Mix.Project.app_path)
     file = Path.join(path, filename)

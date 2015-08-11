@@ -1,6 +1,6 @@
 defmodule Calecto.Time do
   require Calendar.Time
-  import Ecto.DateTime.Util
+  import Calecto.Utils
 
   @moduledoc """
   Calendar Time for Ecto
@@ -30,6 +30,10 @@ defmodule Calecto.Time do
   end
   def cast(%Calendar.Time{} = t),
     do: {:ok, t}
+  def cast(%{"hour" => hour, "min" => min, "sec" => sec}),
+    do: from_parts(to_i(hour), to_i(min), to_i(sec))
+  def cast(%{"hour" => hour, "min" => min}),
+    do: from_parts(to_i(hour), to_i(min), to_i(0))
   def cast(_),
     do: :error
 
@@ -38,16 +42,20 @@ defmodule Calecto.Time do
   end
 
   @doc """
-  Converts an `Ecto.Time` into a time triplet.
+  Converts an `Ecto.Time` into a time tuple.
   """
   def dump(%Calendar.Time{} = time) do
-    {:ok, Calendar.Time.to_erl(time)}
+    {:ok, Calendar.Time.to_micro_erl(time)}
   end
 
   @doc """
-  Converts a time triplet into an `Ecto.Time`.
+  Converts a time tuple into an `Ecto.Time`.
   """
   def load({hour, min, sec}) do
     Calendar.Time.from_erl({hour, min, sec})
+  end
+
+  def load({hour, min, sec, usec}) do
+    Calendar.Time.from_erl({hour, min, sec}, usec)
   end
 end

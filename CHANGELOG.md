@@ -1,5 +1,18 @@
 # Changelog for Calecto
 
+## [0.3.7] - 2015-08-10
+### Fixed
+
+- Works with Ecto 0.15. No longer relies on internal Ecto.DateTime.Util API.
+
+### Added
+
+- Map casting for Time and Date (Fabian Keunecke)
+
+### Changed
+
+- Requires Calendar version ~> 0.8.1
+
 ## [0.3.6] - 2015-07-13
 ### Changed
 
