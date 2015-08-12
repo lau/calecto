@@ -24,7 +24,7 @@ defmodule Calecto.Utils do
       unquote(hour) in 0..23 and
       unquote(min) in 0..59 and
       unquote(sec) in 0..60 and
-      unquote(hour) in 0..999_999
+      unquote(usec) in 0..999_999
     end
   end
 
