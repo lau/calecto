@@ -1,5 +1,12 @@
 # Changelog for Calecto
 
+## [0.3.8] - 2015-08-13
+### Added
+
+- Compatibility with Calendar ~> 0.9.0
+- Map casting for Time (Fabian Keunecke)
+- Map casting for DateTimeUTC and DateTime
+
 ## [0.3.7] - 2015-08-10
 ### Fixed
 
@@ -7,7 +14,7 @@
 
 ### Added
 
-- Map casting for Time and Date (Fabian Keunecke)
+- Map casting for Date (Fabian Keunecke)
 
 ### Changed
 
