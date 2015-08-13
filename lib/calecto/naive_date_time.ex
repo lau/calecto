@@ -32,6 +32,16 @@ defmodule Calecto.NaiveDateTime do
   end
   def cast(%Calendar.NaiveDateTime{} = ndt),
     do: {:ok, ndt}
+  def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=>sec, "usec" => usec}) do
+    from_parts(to_i(year), to_i(month), to_i(day),
+               to_i(hour), to_i(min), to_i(sec), to_i(usec))
+  end
+  def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=>sec}) do
+    cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> sec, "usec" => 0})
+  end
+  def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min}) do
+    cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> 0})
+  end
   def cast(_),
     do: :error
 
