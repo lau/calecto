@@ -14,7 +14,7 @@ library. With timezone awareness, parsing, and formatting functionality.
 
 ```elixir
 defp deps do
-  [ {:calecto, "~> 0.3.8"}, ]
+  [ {:calecto, "~> 0.3.9"}, ]
 end
 ```
 
