@@ -1,5 +1,11 @@
 # Changelog for Calecto
 
+## [0.3.9] - 2015-08-25
+### Added
+
+- Support for Ecto 1.0
+- Support for Calendar 0.10.0
+
 ## [0.3.8] - 2015-08-13
 ### Added
 
