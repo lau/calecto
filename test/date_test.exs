@@ -19,5 +19,6 @@ defmodule DateTest do
     assert Calecto.Date.cast(@date) == {:ok, @date}
     assert Calecto.Date.cast(@string_date) == {:ok, @date}
     assert Calecto.Date.cast(@map_date) == {:ok, @date}
+    assert Calecto.Date.cast(@tuple_date) == {:ok, @date}
   end
 end

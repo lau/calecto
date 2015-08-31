@@ -25,7 +25,9 @@ defmodule Calecto.Date do
     do: from_parts(to_i(year), to_i(month), to_i(day))
   def cast(%Calendar.Date{} = d),
     do: {:ok, d}
-   def cast(%{"year" => year, "month" => month, "day" => day}),
+  def cast(%{"year" => year, "month" => month, "day" => day}),
+    do: from_parts(to_i(year), to_i(month), to_i(day))
+  def cast({year, month, day}),
     do: from_parts(to_i(year), to_i(month), to_i(day))
   def cast(_),
     do: :error
