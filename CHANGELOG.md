@@ -1,5 +1,11 @@
 # Changelog for Calecto
 
+
+## [0.3.10] - 2015-09-08
+### Fixes
+
+- Fix date query problems by allowing casting tuple date (Daniel Farrell)
+
 ## [0.3.9] - 2015-08-25
 ### Added
 
