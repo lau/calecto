@@ -34,11 +34,18 @@ defmodule Calecto.Time do
     do: from_parts(to_i(hour), to_i(min), to_i(sec))
   def cast(%{"hour" => hour, "min" => min}),
     do: from_parts(to_i(hour), to_i(min), 0)
+  def cast({hour, min, sec}),
+    do: from_parts(to_i(hour), to_i(min), to_i(sec))
+  def cast({hour, min, sec, usec}),
+    do: from_parts(to_i(hour), to_i(min), to_i(sec), to_i(usec))
   def cast(_),
     do: :error
 
   defp from_parts(hour, min, sec) do
     Calendar.Time.from_erl({hour, min, sec})
+  end
+  defp from_parts(hour, min, sec, usec) do
+    Calendar.Time.from_erl({hour, min, sec}, usec)
   end
 
   @doc """

@@ -24,6 +24,11 @@ defmodule TimeTest do
   test "cast Time" do
     assert Calecto.Time.cast(@time) == {:ok, @time}
     assert Calecto.Time.cast(@map_time) == {:ok, @time}
+    assert Calecto.Time.cast(@tuple_time_with_usec) == {:ok, @time_with_usec}
     assert Calecto.Time.cast(@map_time_without_sec) == {:ok, @time_without_sec}
+  end
+
+  test "cast tuple" do
+    assert Calecto.Time.cast(@tuple_time) == {:ok, @time}
   end
 end

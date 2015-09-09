@@ -1,5 +1,8 @@
 # Changelog for Calecto
 
+### Added
+
+- Casting of tuples to Calecto.Time
 
 ## [0.3.10] - 2015-09-08
 ### Fixes
