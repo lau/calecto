@@ -95,3 +95,9 @@ defmodule Calecto.Time do
     from_micro_erl({hour, min, sec, usec})
   end
 end
+
+defimpl Calendar.ContainsTime, for: Calecto.Time do
+  def time_struct(data) do
+    Calendar.Time.from_erl! {data.hour, data.min, data.sec}, data.usec
+  end
+end
