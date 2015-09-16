@@ -6,6 +6,8 @@ defmodule Calecto.Time do
   Calendar Time for Ecto
   """
 
+  defstruct [:hour, :min, :sec, :usec]
+
   @behaviour Ecto.Type
 
   @doc """
@@ -28,7 +30,9 @@ defmodule Calecto.Time do
       :error
     end
   end
-  def cast(%Calendar.Time{} = t),
+  def cast(%Calendar.Time{hour: h, min: m, sec: s, usec: u}),
+    do: from_micro_erl({h,m,s,u})
+  def cast(%Calecto.Time{} = t),
     do: {:ok, t}
   def cast(%{"hour" => hour, "min" => min, "sec" => sec}),
     do: from_parts(to_i(hour), to_i(min), to_i(sec))
@@ -42,27 +46,52 @@ defmodule Calecto.Time do
     do: :error
 
   defp from_parts(hour, min, sec) do
-    Calendar.Time.from_erl({hour, min, sec})
+    from_erl({hour, min, sec})
   end
   defp from_parts(hour, min, sec, usec) do
-    Calendar.Time.from_erl({hour, min, sec}, usec)
+    from_micro_erl({hour, min, sec, usec})
+  end
+
+  def from_micro_erl({hour, min, sec, usec}) do
+    {tag, cal_time} = Calendar.Time.from_erl({hour, min, sec}, usec)
+    if tag == :ok do
+      {:ok, %Calecto.Time{hour: cal_time.hour,
+                          min: cal_time.min,
+                          sec: cal_time.sec,
+                          usec: cal_time.usec}}
+    else
+      {:error, :invalid_time}
+    end
+  end
+  def from_erl({hour, min, sec}) do
+    from_micro_erl({hour, min, sec, nil})
+  end
+
+  def to_micro_erl(%Calecto.Time{hour: h, min: m, sec: s, usec: nil}) do
+    {h, m, s, 0}
+  end
+  def to_micro_erl(%Calecto.Time{hour: h, min: m, sec: s, usec: u}) do
+    {h, m, s, u}
   end
 
   @doc """
   Converts an `Ecto.Time` into a time tuple.
   """
-  def dump(%Calendar.Time{} = time) do
-    {:ok, Calendar.Time.to_micro_erl(time)}
+  def dump(%Calecto.Time{usec: 0} = time) do
+    {:ok, {time.hour, time.min, time.sec, 0}}
+  end
+  def dump(%Calecto.Time{} = time) do
+    {:ok, to_micro_erl(time)}
   end
 
   @doc """
   Converts a time tuple into an `Ecto.Time`.
   """
   def load({hour, min, sec}) do
-    Calendar.Time.from_erl({hour, min, sec})
+    from_erl({hour, min, sec})
   end
 
   def load({hour, min, sec, usec}) do
-    Calendar.Time.from_erl({hour, min, sec}, usec)
+    from_micro_erl({hour, min, sec, usec})
   end
 end
