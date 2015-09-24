@@ -14,7 +14,7 @@ library. With timezone awareness, parsing, and formatting functionality.
 
 ```elixir
 defp deps do
-  [ {:calecto, "~> 0.3.10"}, ]
+  [ {:calecto, "~> 0.4.0"}, ]
 end
 ```
 
@@ -59,7 +59,7 @@ end
 
 ### Formatting timestamps
 
-This means that your timestamps will be loaded as Calendar.DateTime structs
+This means that your timestamps will be loaded as Calecto.DateTimeUTC structs
 instead of Ecto.DateTime structs and you can use the formatting functionality
 in Calendar.
 
@@ -80,9 +80,9 @@ timezone. See more in the [Calendar documentation](http://hexdocs.pm/calendar/).
 If you have a primitive type as listed below you can swap it for a Calecto type
 simply by adding the type to your Ecto schema.
 
-| Primitive type            | Ecto type             | Calendar type            |
+| Primitive type            | Ecto type             | Equivalent Calendar type |
 | ------------------------- | --------------------- | ------------------------ |
-| *Used in migrations*      | *Used in schemas*     | *What is persisted*      |
+| *Used in migrations*      | *Used in schemas*     | *Shares protocol with*   |
 | :date                     | Calecto.Date          | Calendar.Date            |
 | :time                     | Calecto.Time          | Calendar.Time            |
 | :datetime                 | Calecto.DateTimeUTC   | Calendar.DateTime        |
@@ -149,8 +149,9 @@ Calendar.DateTime structs there if they are in the Etc/UTC timezone:
     weather_struct_to_be_saved = %Weather{nice_datetime: parsed_datetime}
 ```
 
-When a Calecto.DateTimeUTC type is received from the database it is loaded as a
-Calendar.DateTime struct. We can use the functions in Calendar to shift this UTC
+A Calecto.DateTimeUTC type supports the ContainsDateTime protocol which means
+that is can be used with Calendar.DateTime functions.
+We can for instance use the functions in Calendar to shift this UTC
 datetime to another time zone:
 
 ```elixir

@@ -1,8 +1,14 @@
 # Changelog for Calecto
 
-### Added
+## [0.4.0] - 2015-09-24
+### Changed
 
-- Casting of tuples to Calecto.Time
+- Calecto Date, Time, DateTimeUTC, NaiveDateTime now have their own struct.
+  They will be returned instead of the Calendar equivalent.
+  Before a Calecto.DateTimeUTC type would load as a Calendar.DateTime struct.
+  But now it is a Calecto.DateTimeUTC struct. Because of protocols, they can
+  still be used with the Calendar functions for formatting, timezone shifting
+  etc.
 
 ## [0.3.10] - 2015-09-08
 ### Fixes
