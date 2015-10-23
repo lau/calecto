@@ -1,5 +1,13 @@
 # Changelog for Calecto
 
+## [0.4.1] - 2015-10-23
+### Added
+
+- Implementation of protocols for Ecto types:
+  Calendar.ContainsTime for Ecto.Time, Ecto.DateTime
+  Calendar.ContainsDate for Ecto.Date, Ecto.DateTime
+  Calendar.ContainsNaiveDateTime for Ecto.DateTime
+
 ## [0.4.0] - 2015-09-24
 ### Changed
 
