@@ -1,5 +1,10 @@
 # Changelog for Calecto
 
+## [0.4.2] - 2015-11-07
+### Added
+
+- Accept Calendar versions ~> 0.11.1
+
 ## [0.4.1] - 2015-10-23
 ### Added
 
