@@ -20,7 +20,7 @@ defmodule Calecto.Mixfile do
       {:calendar, "~> 0.12.0 or ~> 0.11.1 or ~> 0.10.1"},
 
       {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.8", only: :dev},
+      {:ex_doc, "~> 0.11", only: :dev},
     ]
   end
 
