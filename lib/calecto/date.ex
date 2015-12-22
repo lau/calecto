@@ -44,12 +44,11 @@ defmodule Calecto.Date do
 
   def from_erl({_year, _month, _day} = date_tuple) do
     {tag, calendar_date} = date_tuple |> Calendar.Date.from_erl
-    if tag==:ok do
-      {:ok, %Calecto.Date{year: calendar_date.year,
+    case tag do
+      :ok -> {:ok, %Calecto.Date{year: calendar_date.year,
                     month: calendar_date.month,
                     day: calendar_date.day} }
-    else
-      {:error, :invalid_date}
+      _ -> {:error, :invalid_date}
     end
   end
 
