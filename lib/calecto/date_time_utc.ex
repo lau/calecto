@@ -37,10 +37,9 @@ defmodule Calecto.DateTimeUTC do
     do: {:ok, dt}
   def cast(%Calendar.DateTime{timezone: "Etc/UTC"} = dt) do
     {tag, calecto_dt} = from_parts(dt.year, dt.month, dt.day, dt.hour, dt.min, dt.sec, dt.usec)
-    if tag == :ok do
-      {:ok, calecto_dt}
-    else
-      :error
+    case tag do
+      :ok -> {:ok, calecto_dt}
+      _ -> :error
     end
   end
   def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=>sec, "usec" => usec}) do
