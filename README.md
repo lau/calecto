@@ -33,8 +33,10 @@ functionality of the Calendar library:
 ```elixir
 def model do
   quote do
-    use Ecto.Model
+    use Ecto.Schema
     use Calecto.Model, usec: true
+
+    # ...
   end
 end
 ```
@@ -43,11 +45,11 @@ end
 
 - An alternative method to adding the line in `web/web.ex` is the following:
   In your Ecto models, where you have a schema definition with a `timestamps`
-  line, under the line that says `use Ecto.Model` add `use Calecto.Model` like so:
+  line, under the line that says `use Ecto.Schema` add `use Calecto.Model` like so:
 
 ```elixir
 defmodule Weather do
-  use Ecto.Model
+  use Ecto.Schema
   use Calecto.Model, usec: true
 
   schema "weather" do
