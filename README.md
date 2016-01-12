@@ -110,7 +110,7 @@ In your Ecto schema:
 
 ```elixir
 defmodule Weather do
-  use Ecto.Model
+  use Ecto.Schema
   use Calecto.Model, usec: true
 
   schema "weather" do
