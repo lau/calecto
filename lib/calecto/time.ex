@@ -54,13 +54,12 @@ defmodule Calecto.Time do
 
   def from_micro_erl({hour, min, sec, usec}) do
     {tag, cal_time} = Calendar.Time.from_erl({hour, min, sec}, usec)
-    if tag == :ok do
-      {:ok, %Calecto.Time{hour: cal_time.hour,
+    case tag do
+      :ok -> {:ok, %Calecto.Time{hour: cal_time.hour,
                           min: cal_time.min,
                           sec: cal_time.sec,
                           usec: cal_time.usec}}
-    else
-      {:error, :invalid_time}
+      _ -> {:error, :invalid_time}
     end
   end
   def from_erl({hour, min, sec}) do

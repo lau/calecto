@@ -70,11 +70,10 @@ defmodule Calecto.NaiveDateTime do
   end
   def from_erl({date, {hour, min, sec, usec}}) do
     {tag, ndt} = Calendar.NaiveDateTime.from_erl({date, {hour, min, sec}}, usec)
-    if tag == :ok do
-      {:ok, %Calecto.NaiveDateTime{year: ndt.year, month: ndt.month, day: ndt.day,
+    case tag do
+      :ok -> {:ok, %Calecto.NaiveDateTime{year: ndt.year, month: ndt.month, day: ndt.day,
          hour: ndt.hour, min: ndt.min, sec: ndt.sec, usec: ndt.usec}}
-    else
-      {tag, ndt}
+      _ -> {tag, ndt}
     end
   end
 
