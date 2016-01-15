@@ -40,6 +40,11 @@ defmodule Calecto.DateTime do
            "sec"=> 0, "timezone" => timezone})
   end
 
+  def cast!(datetime) do
+    {:ok, dt} = datetime
+    dt
+  end
+
   @doc """
   Converts to a tuple of:
     - erlang style tuples with microseconds added

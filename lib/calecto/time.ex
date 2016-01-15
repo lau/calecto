@@ -45,6 +45,11 @@ defmodule Calecto.Time do
   def cast(_),
     do: :error
 
+  def cast!(time) do
+    {:ok, t} = cast(time)
+    t
+  end
+
   defp from_parts(hour, min, sec) do
     from_erl({hour, min, sec})
   end

@@ -36,6 +36,11 @@ defmodule Calecto.Date do
   def cast(_),
     do: :error
 
+  def cast!(date) do
+    {:ok, d} = date
+    d
+  end
+
   defp from_parts(year, month, day) when is_date(year, month, day) do
     from_erl({year, month, day})
   end
