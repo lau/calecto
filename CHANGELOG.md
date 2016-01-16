@@ -1,5 +1,11 @@
 # Changelog for Calecto
 
+## [0.4.4] - 2016-01-16
+### Added
+
+- Add cast! functions that return the result directly instead of wrapped
+  in a tuple with :ok.
+
 ## [0.4.3] - 2015-12-10
 ### Added
 
