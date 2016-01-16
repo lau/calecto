@@ -50,6 +50,11 @@ defmodule Calecto.NaiveDateTime do
   def cast(_),
     do: :error
 
+  def cast!(datetime) do
+    {:ok, dt} = cast(datetime)
+    dt
+  end
+
   defp from_parts(year, month, day, hour, min, sec, usec) do
     load({{year, month, day},{hour, min, sec, usec}})
   end
