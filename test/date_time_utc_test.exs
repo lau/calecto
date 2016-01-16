@@ -42,6 +42,11 @@ defmodule DateTimeUTCTest do
     assert DateTimeUTC.cast(utc_dt) == {:ok, @utc_calecto_dt_sans_usec}
   end
 
+  test "cast! UTC DateTime" do
+    utc_dt = Calendar.DateTime.from_erl!({{2001,7,29},{1,2,3}}, "Etc/UTC")
+    assert DateTimeUTC.cast!(utc_dt) == @utc_calecto_dt_sans_usec
+  end
+
   test "cast Calecto DateTimeUTC" do
     assert DateTimeUTC.cast(@utc_calendar_dt_with_usec) == {:ok, @utc_calecto_dt_with_usec}
   end

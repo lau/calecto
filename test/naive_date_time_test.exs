@@ -29,6 +29,10 @@ defmodule NaiveDateTimeTest do
     assert Calecto.NaiveDateTime.cast(@calecto_ndt_with_usec) == {:ok, @calecto_ndt_with_usec}
   end
 
+  test "cast!" do
+    assert Calecto.NaiveDateTime.cast!(@calendar_ndt_with_usec) == @calecto_ndt_with_usec
+  end
+
   test "dump NaiveDateTime" do
     assert Calecto.NaiveDateTime.dump(@calecto_ndt_sans_usec) == {:ok, {{2001, 7, 29}, {1, 2, 3, 0}}}
     assert Calecto.NaiveDateTime.dump(@calecto_ndt_with_usec) == {:ok, {{2001, 7, 29}, {1, 2, 3, 2345}}}

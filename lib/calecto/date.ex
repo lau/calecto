@@ -37,7 +37,7 @@ defmodule Calecto.Date do
     do: :error
 
   def cast!(date) do
-    {:ok, d} = date
+    {:ok, d} = cast(date)
     d
   end
 

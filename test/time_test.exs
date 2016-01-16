@@ -36,4 +36,8 @@ defmodule TimeTest do
   test "cast tuple" do
     assert Calecto.Time.cast(@tuple_time) == {:ok, @calecto_time}
   end
+
+  test "cast!" do
+    assert Calecto.Time.cast!(@tuple_time) == @calecto_time
+  end
 end

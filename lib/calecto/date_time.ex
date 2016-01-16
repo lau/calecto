@@ -41,7 +41,7 @@ defmodule Calecto.DateTime do
   end
 
   def cast!(datetime) do
-    {:ok, dt} = datetime
+    {:ok, dt} = cast(datetime)
     dt
   end
 

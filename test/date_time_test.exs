@@ -23,6 +23,10 @@ defmodule DateTimeTest do
     assert Calecto.DateTime.cast(@mvd_calendar_dt_with_usec) == {:ok, @mvd_calendar_dt_with_usec}
   end
 
+  test "cast bang DateTime" do
+    assert Calecto.DateTime.cast!(@mvd_calendar_dt_with_usec) == @mvd_calendar_dt_with_usec
+  end
+
   test "cast map" do
     assert Calecto.DateTime.cast(@map_dt) == {:ok, @mvd_calendar_dt_zero_usec}
     assert Calecto.DateTime.cast(@map_dt_usec) == {:ok, @mvd_calendar_dt_with_usec}
