@@ -1,5 +1,11 @@
 # Changelog for Calecto
 
+## [0.4.5] - 2016-01-21
+### Fixed
+
+- `calecto.add_type_migration` mix task fixed. Would not work with newer
+   version of Ecto
+
 ## [0.4.4] - 2016-01-16
 ### Added
 
