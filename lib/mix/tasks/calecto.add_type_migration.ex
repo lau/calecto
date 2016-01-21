@@ -6,10 +6,10 @@ defmodule Mix.Tasks.Calecto.AddTypeMigration do
   @migration_name "AddCalendarDateTimeType"
 
   def run(args) do
+    path = "#{Mix.Project.app_path}/priv/repo/migrations/"
     Mix.Task.run "app.start", args
-    repo = parse_repo(args)
+    repo = parse_repo(args) |> hd
     filename = "#{timestamp}_add_datetime_type.exs"
-    path = Path.relative_to(migrations_path(repo), Mix.Project.app_path)
     file = Path.join(path, filename)
     create_directory path
     create_file file, migration_template(mod:
