@@ -23,8 +23,11 @@ defimpl Ecto.DataType, for: Calendar.NaiveDateTime do
   end
 end
 defimpl Ecto.DataType, for: Calendar.DateTime do
-  def cast(%Calendar.DateTime{} = dt, type) when type in [:datetime, Calecto.NaiveDateTime, Calecto.DateTimeUTC, Ecto.DateTime] do
+  def cast(%Calendar.DateTime{} = dt, type) when type in [:datetime, Calecto.NaiveDateTime, Ecto.DateTime] do
     {:ok, Calendar.NaiveDateTime.to_micro_erl(dt)}
+  end
+  def cast(%Calendar.DateTime{timezone: "Etc/UTC"} = dt, Calecto.DateTimeUTC) do
+    {:ok, Calendar.DateTime.to_micro_erl(dt)}
   end
   def cast(_, _) do
     :error
