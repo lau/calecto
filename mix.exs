@@ -4,7 +4,7 @@ defmodule Calecto.Mixfile do
   def project do
     [app: :calecto,
      version: "0.5.0",
-     elixir: "~> 1.0",
+     elixir: "~> 1.1",
      package: package,
      description: description,
      deps: deps]
