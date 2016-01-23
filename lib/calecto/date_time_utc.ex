@@ -33,12 +33,12 @@ defmodule Calecto.DateTimeUTC do
     end
   end
 
-  def cast(%Calecto.DateTimeUTC{timezone: "Etc/UTC"} = dt),
+  def cast(%Calendar.DateTime{timezone: "Etc/UTC"} = dt),
     do: {:ok, dt}
-  def cast(%Calendar.DateTime{timezone: "Etc/UTC"} = dt) do
-    {tag, calecto_dt} = from_parts(dt.year, dt.month, dt.day, dt.hour, dt.min, dt.sec, dt.usec)
+  def cast(%Calecto.DateTimeUTC{timezone: "Etc/UTC"} = dt) do
+    {tag, calendar_dt} = from_parts(dt.year, dt.month, dt.day, dt.hour, dt.min, dt.sec, dt.usec)
     case tag do
-      :ok -> {:ok, calecto_dt}
+      :ok -> {:ok, calendar_dt}
       _ -> :error
     end
   end
@@ -98,6 +98,12 @@ defmodule Calecto.DateTimeUTC do
   def dump(%Calecto.DateTimeUTC{} = dt) do
     {:ok, to_micro_erl(dt) }
   end
+  def dump(%Calendar.DateTime{timezone: timezone}) when timezone != "Etc/UTC" do
+    :error
+  end
+  def dump(%Calendar.DateTime{} = dt) do
+    {:ok, Calendar.DateTime.to_micro_erl(dt) }
+  end
   def dump(_), do: :error
 
   @doc """
@@ -105,7 +111,7 @@ defmodule Calecto.DateTimeUTC do
   """
   def load({{year, month, day}, {hour, min, sec, usec}}) do
     { :ok,
-      %Calecto.DateTimeUTC{year: year, month: month, day: day, hour: hour, min: min,
+      %Calendar.DateTime{year: year, month: month, day: day, hour: hour, min: min,
                       sec: sec, usec: usec, abbr: "UTC", timezone: "Etc/UTC",
                       utc_off: 0, std_off: 0}
     }
@@ -117,18 +123,27 @@ defimpl Calendar.ContainsDateTime, for: Calecto.DateTimeUTC do
 end
 defimpl Calendar.ContainsNaiveDateTime, for: Calecto.DateTimeUTC do
   def ndt_struct(data) do
+    IO.puts :stderr, "Warning: the Calecto.DateTimeUTC struct is deprecated." <>
+                     "Use Calendar.DateTimeUTC instead. " <>
+                      Exception.format_stacktrace()
     {date, {h, m, s, u}} = data |> Calecto.DateTimeUTC.to_micro_erl
     Calendar.NaiveDateTime.from_erl!({date, {h,m,s}}, u)
   end
 end
 defimpl Calendar.ContainsDate, for: Calecto.DateTimeUTC do
   def date_struct(data) do
+    IO.puts :stderr, "Warning: the Calecto.DateTimeUTC struct is deprecated." <>
+                     "Use Calendar.DateTimeUTC instead. " <>
+                      Exception.format_stacktrace()
     {date, _} = data |> Calecto.DateTimeUTC.to_micro_erl
     Calendar.Date.from_erl! date
   end
 end
 defimpl Calendar.ContainsTime, for: Calecto.DateTimeUTC do
   def time_struct(data) do
+    IO.puts :stderr, "Warning: the Calecto.DateTimeUTC struct is deprecated." <>
+                     "Use Calendar.DateTimeUTC instead. " <>
+                      Exception.format_stacktrace()
     {_, {h, m, s, u}} = data |> Calecto.DateTimeUTC.to_micro_erl
     Calendar.Time.from_erl! {h, m, s}, u
   end

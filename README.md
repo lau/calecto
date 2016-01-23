@@ -6,8 +6,8 @@ Calecto
 Status](https://travis-ci.org/lau/calecto.svg?branch=master)](https://travis-ci.org/lau/calecto)
 [![Hex Version](http://img.shields.io/hexpm/v/calecto.svg?style=flat)](https://hex.pm/packages/calecto)
 
-Glue between [Calendar](https://github.com/lau/calendar) and
-[Ecto](https://github.com/elixir-lang/ecto).
+Library to make it easy to use [Calendar](https://github.com/lau/calendar) and
+[Ecto](https://github.com/elixir-lang/ecto) together.
 For saving dates, times and datetimes in Ecto. Instead of using the Ecto
 types for Date, Time and DateTime, you can access the features of the Calendar
 library. With timezone awareness, parsing, and formatting functionality.

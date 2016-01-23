@@ -17,27 +17,29 @@ defmodule TimeTest do
   test "dump Time" do
     assert Calecto.Time.dump(@calecto_time) == {:ok, @tuple_time_with_usec_zero}
     assert Calecto.Time.dump(@calecto_time_without_sec) == {:ok, @tuple_time_without_sec}
+    assert Calecto.Time.dump(@calendar_time) == {:ok, @tuple_time_with_usec_zero}
+    assert Calecto.Time.dump(@calendar_time_without_sec) == {:ok, @tuple_time_without_sec}
   end
 
   test "load Time" do
-    assert Calecto.Time.load(@tuple_time) == {:ok, @calecto_time}
-    assert Calecto.Time.load(@tuple_time_with_usec) == {:ok, @calecto_time_with_usec}
+    assert Calecto.Time.load(@tuple_time) == {:ok, @calendar_time}
+    assert Calecto.Time.load(@tuple_time_with_usec) == {:ok, @calendar_time_with_usec}
   end
 
   test "cast Time" do
-    assert Calecto.Time.cast(@calecto_time) == {:ok, @calecto_time}
-    assert Calecto.Time.cast(@calendar_time) == {:ok, @calecto_time}
-    assert Calecto.Time.cast(@calendar_time_with_usec) == {:ok, @calecto_time_with_usec}
-    assert Calecto.Time.cast(@map_time) == {:ok, @calecto_time}
-    assert Calecto.Time.cast(@tuple_time_with_usec) == {:ok, @calecto_time_with_usec}
-    assert Calecto.Time.cast(@map_time_without_sec) == {:ok, @calecto_time_without_sec}
+    assert Calecto.Time.cast(@calecto_time) == {:ok, @calendar_time}
+    assert Calecto.Time.cast(@calendar_time) == {:ok, @calendar_time}
+    assert Calecto.Time.cast(@calendar_time_with_usec) == {:ok, @calendar_time_with_usec}
+    assert Calecto.Time.cast(@map_time) == {:ok, @calendar_time}
+    assert Calecto.Time.cast(@tuple_time_with_usec) == {:ok, @calendar_time_with_usec}
+    assert Calecto.Time.cast(@map_time_without_sec) == {:ok, @calendar_time_without_sec}
   end
 
   test "cast tuple" do
-    assert Calecto.Time.cast(@tuple_time) == {:ok, @calecto_time}
+    assert Calecto.Time.cast(@tuple_time) == {:ok, @calendar_time}
   end
 
   test "cast!" do
-    assert Calecto.Time.cast!(@tuple_time) == @calecto_time
+    assert Calecto.Time.cast!(@tuple_time) == @calendar_time
   end
 end

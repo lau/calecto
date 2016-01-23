@@ -14,23 +14,23 @@ defmodule NaiveDateTimeTest do
   @map_ndt_no_sec %{"day" => "29", "month" => "7", "year" => "2001", "hour" => "1", "min" => "2"}
 
   test "cast strings" do
-    assert Calecto.NaiveDateTime.cast("2001-07-29T01:02:03") == {:ok, @calecto_ndt_zero_usec}
-    assert Calecto.NaiveDateTime.cast("2001-07-29T01:02:03.002345") == {:ok, @calecto_ndt_with_usec}
+    assert Calecto.NaiveDateTime.cast("2001-07-29T01:02:03") == {:ok, @calendar_ndt_zero_usec}
+    assert Calecto.NaiveDateTime.cast("2001-07-29T01:02:03.002345") == {:ok, @calendar_ndt_with_usec}
   end
 
   test "cast map" do
-    assert Calecto.NaiveDateTime.cast(@map_ndt) == {:ok, @calecto_ndt_zero_usec}
-    assert Calecto.NaiveDateTime.cast(@map_ndt_usec) == {:ok, @calecto_ndt_with_usec}
-    assert Calecto.NaiveDateTime.cast(@map_ndt_no_sec) == {:ok, @calecto_ndt_with_sec_zero}
+    assert Calecto.NaiveDateTime.cast(@map_ndt) == {:ok, @calendar_ndt_zero_usec}
+    assert Calecto.NaiveDateTime.cast(@map_ndt_usec) == {:ok, @calendar_ndt_with_usec}
+    assert Calecto.NaiveDateTime.cast(@map_ndt_no_sec) == {:ok, @calendar_ndt_with_sec_zero}
   end
 
   test "cast" do
-    assert Calecto.NaiveDateTime.cast(@calendar_ndt_with_usec) == {:ok, @calecto_ndt_with_usec}
-    assert Calecto.NaiveDateTime.cast(@calecto_ndt_with_usec) == {:ok, @calecto_ndt_with_usec}
+    assert Calecto.NaiveDateTime.cast(@calendar_ndt_with_usec) == {:ok, @calendar_ndt_with_usec}
+    assert Calecto.NaiveDateTime.cast(@calecto_ndt_with_usec) == {:ok, @calendar_ndt_with_usec}
   end
 
   test "cast!" do
-    assert Calecto.NaiveDateTime.cast!(@calendar_ndt_with_usec) == @calecto_ndt_with_usec
+    assert Calecto.NaiveDateTime.cast!(@calendar_ndt_with_usec) == @calendar_ndt_with_usec
   end
 
   test "dump NaiveDateTime" do
