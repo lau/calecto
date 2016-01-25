@@ -150,10 +150,9 @@ Calendar.DateTime structs there if they are in the Etc/UTC timezone:
     weather_struct_to_be_saved = %Weather{nice_datetime: parsed_datetime}
 ```
 
-A Calecto.DateTimeUTC type supports the ContainsDateTime protocol which means
-that is can be used with Calendar.DateTime functions.
-We can for instance use the functions in Calendar to shift this UTC
-datetime to another time zone:
+The `Calendar.DateTime` struct returned from the database can be used with
+`Calendar.DateTime` functions. We could for instance use the functions in
+Calendar to shift this UTC datetime to another time zone:
 
 ```elixir
     iex> example_loaded_from_db |> Calendar.DateTime.shift_zone!("Europe/Copenhagen")
@@ -175,6 +174,9 @@ Or format it via strftime:
     iex> example_loaded_from_db |> Calendar.Strftime.strftime!("The time is %T and it is %A.")
     "The time is 16:48:19 and it is Monday."
 ```
+
+The are many more possiblities with Calendar for formatting, parsing etc. Look
+at the [Calendar documentation](http://hexdocs.pm/calendar/) for a detailed description.
 
 ## DateTime with Postgres
 
