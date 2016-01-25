@@ -1,6 +1,5 @@
 Calecto
 =======
-### (formerly known as Kalecto)
 
 [![Build
 Status](https://travis-ci.org/lau/calecto.svg?branch=master)](https://travis-ci.org/lau/calecto)
