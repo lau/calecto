@@ -26,14 +26,14 @@ functionality of the Calendar library:
 
 ### If you are using Phoenix
 
-- If you are Phoenix you can add the line `use Calecto.Model` in the file
+- If you are Phoenix you can add the line `use Calecto.Schema` in the file
 `web/web.ex` in the `model` function definition like so:
 
 ```elixir
 def model do
   quote do
     use Ecto.Schema
-    use Calecto.Model, usec: true
+    use Calecto.Schema, usec: true
 
     # ...
   end
@@ -44,12 +44,12 @@ end
 
 - An alternative method to adding the line in `web/web.ex` is the following:
   In your Ecto models, where you have a schema definition with a `timestamps`
-  line, under the line that says `use Ecto.Schema` add `use Calecto.Model` like so:
+  line, under the line that says `use Ecto.Schema` add `use Calecto.Schema` like so:
 
 ```elixir
 defmodule Weather do
   use Ecto.Schema
-  use Calecto.Model, usec: true
+  use Calecto.Schema, usec: true
 
   schema "weather" do
     field :city, :string
@@ -110,7 +110,7 @@ In your Ecto schema:
 ```elixir
 defmodule Weather do
   use Ecto.Schema
-  use Calecto.Model, usec: true
+  use Calecto.Schema, usec: true
 
   schema "weather" do
     field :temperature,      :integer
@@ -119,7 +119,7 @@ defmodule Weather do
     field :nice_datetime,    Calecto.DateTimeUTC
     field :another_datetime, Calecto.NaiveDateTime
     timestamps usec: true
-    # the timestamps will be DateTimeUTC because of the `use Calecto.Model` line
+    # the timestamps will be DateTimeUTC because of the `use Calecto.Schema` line
   end
 end
 ```
