@@ -82,9 +82,9 @@ timezone. See more in the [Calendar documentation](http://hexdocs.pm/calendar/).
 If you have a primitive type as listed below you can swap it for a Calecto type
 simply by adding the type to your Ecto schema.
 
-| Primitive type            | Ecto type             | Equivalent Calendar type |
+| Primitive type            | Ecto schema type      | Equivalent Calendar type |
 | ------------------------- | --------------------- | ------------------------ |
-| *Used in migrations*      | *Used in schemas*     | *Shares protocol with*   |
+| *Used in migrations*      | *Used in schemas*     | *Type returned from db*  |
 | :date                     | Calecto.Date          | Calendar.Date            |
 | :time                     | Calecto.Time          | Calendar.Time            |
 | :datetime                 | Calecto.DateTimeUTC   | Calendar.DateTime        |

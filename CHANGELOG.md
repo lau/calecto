@@ -1,5 +1,16 @@
 # Changelog for Calecto
 
+## [0.5.0] - 2016-01-24
+### Changed
+
+- Calecto structs are now deprecated and now longer returned by default by Calecto.
+  Instead Calecto is going back to how it was before versions 0.4.x and
+  Calendar structs can now be used directly.
+
+- `Calecto.Model` deprecated in favour of `Calecto.Schema`. You can simply change
+  the module name, since functionality has not changed. The reason for the change
+  is that Ecto has deprecated Ecto.Model.
+
 ## [0.4.5] - 2016-01-21
 ### Fixed
 
