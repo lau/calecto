@@ -16,7 +16,7 @@ defmodule Calecto.Mixfile do
 
   defp deps do
     [
-      {:ecto, "~> 1.1.3"},
+      {:ecto, "~> 1.1.3 or ~> 2.0-beta"},
       {:calendar, "~> 0.12.3"},
 
       {:earmark, "~> 0.2.1", only: :dev},
