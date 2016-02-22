@@ -1,5 +1,10 @@
 # Changelog for Calecto
 
+## [0.5.1] - 2016-02-22
+### Changed
+
+- Support Ecto 2.0 beta
+
 ## [0.5.0] - 2016-01-24
 ### Changed
 
