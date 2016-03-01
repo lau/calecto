@@ -1,5 +1,12 @@
 # Changelog for Calecto
 
+
+## [0.5.2] - 2016-03-01
+### Changed
+
+- Support Ecto.DataType dump function
+- Support Calendar ~> 0.13.1
+
 ## [0.5.1] - 2016-02-22
 ### Changed
 
