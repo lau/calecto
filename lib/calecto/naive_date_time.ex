@@ -5,7 +5,6 @@ defmodule Calecto.NaiveDateTime do
   @moduledoc """
   Calendar NaiveDateTime for Ecto
   """
-  defstruct [:year, :month, :day, :hour, :min, :sec, :usec]
 
   @behaviour Ecto.Type
 
@@ -35,10 +34,6 @@ defmodule Calecto.NaiveDateTime do
     do: {:ok, ndt}
   def cast(%Calendar.DateTime{} = dt),
     do: {:ok, dt |> Calendar.DateTime.to_naive}
-  def cast(%Calecto.NaiveDateTime{} = ndt) do
-    {:ok, %Calendar.NaiveDateTime{year: ndt.year, month: ndt.month, day: ndt.day,
-       hour: ndt.hour, min: ndt.min, sec: ndt.sec, usec: ndt.usec}}
-  end
   def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=>sec, "usec" => usec}) do
     from_parts(to_i(year), to_i(month), to_i(day),
                to_i(hour), to_i(min), to_i(sec), to_i(usec))
@@ -64,15 +59,8 @@ defmodule Calecto.NaiveDateTime do
   @doc """
   Converts to erlang style tuples
   """
-  def dump(%Calecto.NaiveDateTime{} = dt) do
-    {:ok, to_micro_erl(dt)}
-  end
   def dump(%Calendar.NaiveDateTime{} = dt) do
     {:ok, Calendar.NaiveDateTime.to_micro_erl(dt)}
-  end
-
-  def to_micro_erl(%Calecto.NaiveDateTime{} = dt) do
-    {{dt.year, dt.month, dt.day}, {dt.hour, dt.min, dt.sec, dt.usec}}
   end
 
   def from_erl({{year, month, date}, {hour, min, sec}}) do
@@ -92,33 +80,5 @@ defmodule Calecto.NaiveDateTime do
   """
   def load({date, {hour, min, sec, usec}}) do
     {date, {hour, min, sec}} |> Calendar.NaiveDateTime.from_erl(usec)
-  end
-end
-
-defimpl Calendar.ContainsNaiveDateTime, for: Calecto.NaiveDateTime do
-  def ndt_struct(data) do
-    IO.puts :stderr, "Warning: the Calecto.NaiveDateTime struct is deprecated." <>
-                     "Use Calendar.NaiveDateTime instead. " <>
-                      Exception.format_stacktrace()
-    {date, {h, m, s, u}} = data |> Calecto.NaiveDateTime.to_micro_erl
-    Calendar.NaiveDateTime.from_erl!({date, {h,m,s}}, u)
-  end
-end
-defimpl Calendar.ContainsDate, for: Calecto.NaiveDateTime do
-  def date_struct(data) do
-    IO.puts :stderr, "Warning: the Calecto.NaiveDateTime struct is deprecated." <>
-                     "Use Calendar.NaiveDateTime instead. " <>
-                      Exception.format_stacktrace()
-    {date, _} = data |> Calecto.NaiveDateTime.to_micro_erl
-    Calendar.Date.from_erl! date
-  end
-end
-defimpl Calendar.ContainsTime, for: Calecto.NaiveDateTime do
-  def time_struct(data) do
-    IO.puts :stderr, "Warning: the Calecto.NaiveDateTime struct is deprecated." <>
-                     "Use Calendar.NaiveDateTime instead. " <>
-                      Exception.format_stacktrace()
-    {_, {h, m, s, u}} = data |> Calecto.NaiveDateTime.to_micro_erl
-    Calendar.Time.from_erl! {h, m, s}, u
   end
 end

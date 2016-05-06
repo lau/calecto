@@ -1,9 +1,6 @@
 defmodule TimeTest do
   use ExUnit.Case
 
-  @calecto_time %Calecto.Time{hour: 10, min: 42, sec: 53}
-  @calecto_time_with_usec %Calecto.Time{hour: 10, min: 42, sec: 53, usec: 12}
-  @calecto_time_without_sec %Calecto.Time{hour: 10, min: 42, sec: 0}
   @calendar_time %Calendar.Time{hour: 10, min: 42, sec: 53}
   @calendar_time_with_usec %Calendar.Time{hour: 10, min: 42, sec: 53, usec: 12}
   @calendar_time_without_sec %Calendar.Time{hour: 10, min: 42, sec: 0}
@@ -15,8 +12,6 @@ defmodule TimeTest do
   @tuple_time_without_sec {10, 42, 0, 0}
 
   test "dump Time" do
-    assert Calecto.Time.dump(@calecto_time) == {:ok, @tuple_time_with_usec_zero}
-    assert Calecto.Time.dump(@calecto_time_without_sec) == {:ok, @tuple_time_without_sec}
     assert Calecto.Time.dump(@calendar_time) == {:ok, @tuple_time_with_usec_zero}
     assert Calecto.Time.dump(@calendar_time_without_sec) == {:ok, @tuple_time_without_sec}
   end
@@ -27,7 +22,6 @@ defmodule TimeTest do
   end
 
   test "cast Time" do
-    assert Calecto.Time.cast(@calecto_time) == {:ok, @calendar_time}
     assert Calecto.Time.cast(@calendar_time) == {:ok, @calendar_time}
     assert Calecto.Time.cast(@calendar_time_with_usec) == {:ok, @calendar_time_with_usec}
     assert Calecto.Time.cast(@map_time) == {:ok, @calendar_time}

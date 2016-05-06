@@ -2,10 +2,6 @@ defmodule DateTimeUtcTest do
   use ExUnit.Case
   alias Calecto.DateTimeUTC
 
-  @utc_calecto_dt_sans_usec     Calecto.DateTimeUTC.from_erl!({{2001,7,29},{1,2,3}})
-  @utc_calecto_dt_zero_usec     Calecto.DateTimeUTC.from_erl!({{2001,7,29},{1,2,3,0}})
-  @utc_calecto_dt_with_sec_zero Calecto.DateTimeUTC.from_erl!({{2001,7,29},{1,2,0,0}})
-  @utc_calecto_dt_with_usec     Calecto.DateTimeUTC.from_erl!({{2001,7,29},{1,2,3,2345}})
   @utc_calendar_dt_sans_usec     Calendar.DateTime.from_erl!({{2001,7,29},{1,2,3}}, "Etc/UTC")
   @utc_calendar_dt_zero_usec     Calendar.DateTime.from_erl!({{2001,7,29},{1,2,3}}, "Etc/UTC", 0)
   @utc_calendar_dt_with_sec_zero Calendar.DateTime.from_erl!({{2001,7,29},{1,2,0}}, "Etc/UTC", 0)
@@ -28,8 +24,7 @@ defmodule DateTimeUtcTest do
   end
 
   test "dump UTC DateTime" do
-    assert DateTimeUTC.dump(@utc_calecto_dt_sans_usec) == {:ok, {{2001, 7, 29}, {1, 2, 3, 0}}}
-    assert DateTimeUTC.dump(@utc_calecto_dt_with_usec) == {:ok, {{2001, 7, 29}, {1, 2, 3, 2345}}}
+    assert DateTimeUTC.dump(@utc_calendar_dt_zero_usec) == {:ok, {{2001, 7, 29}, {1, 2, 3, 0}}}
   end
 
   test "dump non UTC DateTime should result in error" do

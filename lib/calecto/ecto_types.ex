@@ -17,8 +17,7 @@ defimpl Calendar.ContainsTime, for: Ecto.DateTime do
 end
 defimpl Calendar.ContainsDate, for: Ecto.Date do
   def date_struct(data) do
-    {year, month, day} = data |> Ecto.Date.to_erl
-    Calendar.Date.from_erl!({year, month, day})
+    Calendar.Date.from_erl!({data.year, data.month, data.day})
   end
 end
 defimpl Calendar.ContainsTime, for: Ecto.Time do
