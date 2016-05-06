@@ -86,4 +86,16 @@ defmodule Calecto.DateTimeUTC do
     }
   end
   def load(_), do: :error
+
+  @doc false
+  def autogenerate(precision \\ :sec)
+  def autogenerate(:sec) do
+    {date, {h, m, s}} = :erlang.universaltime
+    load({date, {h, m, s, 0}}) |> elem(1)
+  end
+  def autogenerate(:usec) do
+    timestamp = {_, _, usec} = :os.timestamp
+    {date, {h, m, s}} =:calendar.now_to_datetime(timestamp)
+    load({date, {h, m, s, usec}}) |> elem(1)
+  end
 end
