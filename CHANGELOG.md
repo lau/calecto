@@ -1,5 +1,15 @@
 # Changelog for Calecto
 
+## [0.6.1] - 2016-06-14
+## Added
+
+Deprecation warning for `use Calecto.Model`. It also now works the same as
+Calecto.Schema.
+
+## Changed
+
+Requirement for 2.0.0 release candidate changed from 2.0.0-rc3 to 2.0.0-rc5
+
 ## [0.6.0] - 2016-05-06
 ### General improvements
 
