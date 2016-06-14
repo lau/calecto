@@ -28,6 +28,7 @@ defmodule Calecto.Mixfile do
     %{
        maintainers: ["Lau Taarnskov"],
        links: %{ "GitHub" => "https://github.com/lau/calecto"},
+       licenses: ["MIT"],
        files: ~w(lib priv mix.exs README* LICENSE*
                     license* CHANGELOG* changelog* src) }
   end
