@@ -5,3 +5,5 @@ otp_release:
   - 18.2
 env:
   - MIX_ENV=test
+before_script:
+  - mix local.rebar --force
