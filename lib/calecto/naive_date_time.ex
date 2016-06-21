@@ -30,16 +30,26 @@ defmodule Calecto.NaiveDateTime do
       :error
     end
   end
-  def cast(%Calendar.NaiveDateTime{} = ndt),
+  def cast(%NaiveDateTime{} = ndt),
     do: {:ok, ndt}
-  def cast(%Calendar.DateTime{} = dt),
+  def cast(%DateTime{} = dt),
     do: {:ok, dt |> Calendar.DateTime.to_naive}
+  def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "minute"=>min, "second"=>sec, "microsecond" => usec}) do
+    from_parts(to_i(year), to_i(month), to_i(day),
+               to_i(hour), to_i(min), to_i(sec), to_i(usec))
+  end
   def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=>sec, "usec" => usec}) do
     from_parts(to_i(year), to_i(month), to_i(day),
                to_i(hour), to_i(min), to_i(sec), to_i(usec))
   end
+  def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "minute"=>min, "second"=>sec}) do
+    cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> sec, "usec" => 0})
+  end
   def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=>sec}) do
     cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> sec, "usec" => 0})
+  end
+  def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "minute"=>min}) do
+    cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> 0})
   end
   def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min}) do
     cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> 0})
@@ -59,7 +69,7 @@ defmodule Calecto.NaiveDateTime do
   @doc """
   Converts to erlang style tuples
   """
-  def dump(%Calendar.NaiveDateTime{} = dt) do
+  def dump(%NaiveDateTime{} = dt) do
     {:ok, Calendar.NaiveDateTime.to_micro_erl(dt)}
   end
 

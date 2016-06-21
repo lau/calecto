@@ -22,7 +22,7 @@ defmodule Calecto.Date do
   """
   def cast(<<year::4-bytes, ?-, month::2-bytes, ?-, day::2-bytes>>),
     do: from_parts(to_i(year), to_i(month), to_i(day))
-  def cast(%Calendar.Date{} = d),
+  def cast(%Date{} = d),
     do: {:ok, d}
   def cast(%{"year" => year, "month" => month, "day" => day}),
     do: from_parts(to_i(year), to_i(month), to_i(day))
@@ -50,7 +50,7 @@ defmodule Calecto.Date do
   @doc """
   Converts to erlang style triplet
   """
-  def dump(%Calendar.Date{} = date) do
+  def dump(%Date{} = date) do
     {:ok, Calendar.Date.to_erl(date)}
   end
 

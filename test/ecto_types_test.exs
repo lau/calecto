@@ -16,7 +16,7 @@ defmodule EctoTypesTest do
   end
   test "Ecto.DateTime should have protocol for ContainsTime" do
     ecto_dt = @erl_dt |> Ecto.DateTime.from_erl
-    assert ecto_dt |> Calendar.Time.twelve_hour_time == {4, 5, 6, 0, :am}
+    assert ecto_dt |> Calendar.Time.twelve_hour_time == {4, 5, 6, {0, 6}, :am}
   end
 
   test "Ecto.Dateshould have protocol for ContainsDate" do
@@ -26,6 +26,6 @@ defmodule EctoTypesTest do
 
   test "Ecto.Time should have protocol for ContainsTime" do
     ecto_time = @erl_time |> Ecto.Time.from_erl
-    assert ecto_time |> Calendar.Time.twelve_hour_time == {4, 5, 6, 0, :am}
+    assert ecto_time |> Calendar.Time.twelve_hour_time == {4, 5, 6, {0, 6}, :am}
   end
 end

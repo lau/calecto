@@ -28,8 +28,12 @@ defmodule Calecto.Time do
       :error
     end
   end
-  def cast(%Calendar.Time{} = t),
+  def cast(%Time{} = t),
     do: {:ok, t}
+  def cast(%{"hour" => hour, "minute" => min, "second" => sec}),
+    do: from_parts(to_i(hour), to_i(min), to_i(sec))
+  def cast(%{"hour" => hour, "minute" => min}),
+    do: from_parts(to_i(hour), to_i(min), 0)
   def cast(%{"hour" => hour, "min" => min, "sec" => sec}),
     do: from_parts(to_i(hour), to_i(min), to_i(sec))
   def cast(%{"hour" => hour, "min" => min}),
@@ -57,13 +61,13 @@ defmodule Calecto.Time do
     Calendar.Time.from_erl({hour, min, sec}, usec)
   end
   def from_erl({hour, min, sec}) do
-    from_micro_erl({hour, min, sec, nil})
+    from_micro_erl({hour, min, sec, {0, 0}})
   end
 
   @doc """
   Converts a `Calendar.Time` into a time tuple.
   """
-  def dump(%Calendar.Time{} = time) do
+  def dump(%Time{} = time) do
     {:ok, Calendar.Time.to_micro_erl(time)}
   end
 
