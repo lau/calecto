@@ -33,12 +33,22 @@ defmodule Calecto.DateTimeUTC do
 
   def cast(%Calendar.DateTime{timezone: "Etc/UTC"} = dt),
     do: {:ok, dt}
+  def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "minute"=>min, "second"=>sec, "microsecond" => usec}) do
+    from_erl({{to_i(year), to_i(month), to_i(day)},
+      {to_i(hour), to_i(min), to_i(sec), to_i(usec)}})
+  end
   def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=>sec, "usec" => usec}) do
     from_erl({{to_i(year), to_i(month), to_i(day)},
       {to_i(hour), to_i(min), to_i(sec), to_i(usec)}})
   end
+  def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "minute"=>min, "second"=>sec}) do
+    cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> sec, "usec" => 0})
+  end
   def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=>sec}) do
     cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> sec, "usec" => 0})
+  end
+  def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "minute"=>min}) do
+    cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> 0})
   end
   def cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min}) do
     cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min, "sec"=> 0})

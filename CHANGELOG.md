@@ -1,5 +1,11 @@
 # Changelog for Calecto
 
+## [0.6.2] - 2016-06-22
+## Added
+
+Added support phoenix_html v2.6.0. Maps using `second` and `minute`,
+not just `sec` and `min`.
+
 ## [0.6.1] - 2016-06-14
 ## Added
 
