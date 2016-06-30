@@ -64,8 +64,8 @@ end
 
 ### Formatting timestamps
 
-This means that your timestamps will be loaded as Calecto.DateTimeUTC structs
-instead of Ecto.DateTime structs and you can use the formatting functionality
+This means that your timestamps will be loaded as `DateTime` structs
+instead of Ecto.DateTime structs. You can use the formatting functionality
 in Calendar.
 
 - Format an `inserted_at` timestamp using Calendar:
@@ -88,11 +88,11 @@ simply by adding the type to your Ecto schema.
 | Primitive type            | Ecto schema type      | Equivalent Calendar type |
 | ------------------------- | --------------------- | ------------------------ |
 | *Used in migrations*      | *Used in schemas*     | *Type returned from db*  |
-| :date                     | Calecto.Date          | Calendar.Date            |
-| :time                     | Calecto.Time          | Calendar.Time            |
-| :datetime                 | Calecto.DateTimeUTC   | Calendar.DateTime        |
-| :datetime                 | Calecto.NaiveDateTime | Calendar.NaiveDateTime   |
-| :calendar_datetime        | Calecto.DateTime*     | Calendar.DateTime        |
+| :date                     | Calecto.Date          | Date                     |
+| :time                     | Calecto.Time          | Time                     |
+| :datetime                 | Calecto.DateTimeUTC   | DateTime                 |
+| :datetime                 | Calecto.NaiveDateTime | NaiveDateTime            |
+| :calendar_datetime        | Calecto.DateTime*     | DateTime                 |
 
 If you have a `datetime` as a primitive type, you can use `Calecto.NaiveDateTime` or
 `Calecto.DateTimeUTC`.
@@ -134,17 +134,19 @@ you can save it in Ecto as a DateTimeUTC.
 Let's create a new DateTime to represent "now":
 
 ```elixir
-    iex> example_to_be_saved_in_db = Calendar.DateTime.now_utc
-    %Calendar.DateTime{abbr: "UTC", day: 2, hour: 16, usec: 245828, min: 48,
-     month: 3, sec: 19, std_off: 0, timezone: "Etc/UTC", utc_off: 0, year: 2015}
+    iex> example_to_be_saved_in_db = DateTime.utc_now
+    %DateTime{calendar: Calendar.ISO, day: 30, hour: 15, microsecond: {46167, 6},
+    minute: 47, month: 6, second: 15, std_offset: 0, time_zone: "Etc/UTC",
+    utc_offset: 0, year: 2016, zone_abbr: "UTC"}
 ```
 
 Another way of getting a DateTime is parsing JavaScript style milliseconds:
 
 ```elixir
     iex> parsed_datetime = Calendar.DateTime.Parse.js_ms!("1425314899000")
-    %Calendar.DateTime{abbr: "UTC", day: 2, hour: 16, usec: 0, min: 48, month: 3,
-     sec: 19, std_off: 0, timezone: "Etc/UTC", utc_off: 0, year: 2015}
+    %DateTime{calendar: Calendar.ISO, day: 2, hour: 16, microsecond: {0, 3},
+    minute: 48, month: 3, second: 19, std_offset: 0, time_zone: "Etc/UTC",
+    utc_offset: 0, year: 2015, zone_abbr: "UTC"}
 ```
 
 Since the field `nice_datetime` is of the DateTimeUTC type, we can save
@@ -154,15 +156,15 @@ Calendar.DateTime structs there if they are in the Etc/UTC timezone:
     weather_struct_to_be_saved = %Weather{nice_datetime: parsed_datetime}
 ```
 
-The `Calendar.DateTime` struct returned from the database can be used with
+The `DateTime` struct returned from the database can be used with
 `Calendar.DateTime` functions. We could for instance use the functions in
 Calendar to shift this UTC datetime to another time zone:
 
 ```elixir
     iex> example_loaded_from_db |> Calendar.DateTime.shift_zone!("Europe/Copenhagen")
-    %Calendar.DateTime{abbr: "CET", day: 2, hour: 17, usec: nil, min: 48,
-      month: 3, sec: 19, std_off: 0, timezone: "Europe/Copenhagen", utc_off: 3600,
-      year: 2015}
+    %DateTime{calendar: Calendar.ISO, day: 2, hour: 17, microsecond: {0, 3},
+    minute: 48, month: 3, second: 19, std_offset: 0, time_zone: "Europe/Copenhagen",
+    utc_offset: 3600, year: 2015, zone_abbr: "CET"}
 ```
 
 Or we could get the unix timestamp:
