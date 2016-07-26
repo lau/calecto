@@ -13,11 +13,6 @@ defmodule Calecto.Date do
   def type, do: :date
 
   @doc """
-  Dates are blank when given as strings and the string is blank.
-  """
-  defdelegate blank?(value), to: Ecto.Type
-
-  @doc """
   Casts to date.
   """
   def cast(<<year::4-bytes, ?-, month::2-bytes, ?-, day::2-bytes>>),

@@ -14,11 +14,6 @@ defmodule Calecto.Time do
   def type, do: :time
 
   @doc """
-  Times are blank when given as strings and the string is blank.
-  """
-  defdelegate blank?(value), to: Ecto.Type
-
-  @doc """
   Casts to time.
   """
   def cast(<<hour::2-bytes, ?:, min::2-bytes, ?:, sec::2-bytes, rest::binary>>) do

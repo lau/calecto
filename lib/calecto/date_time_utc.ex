@@ -14,11 +14,6 @@ defmodule Calecto.DateTimeUTC do
   def type, do: :datetime
 
   @doc """
-  Datetimes are blank when given as strings and the string is blank.
-  """
-  defdelegate blank?(value), to: Ecto.Type
-
-  @doc """
   Casts to datetime.
   """
   def cast(<<year::4-bytes, ?-, month::2-bytes, ?-, day::2-bytes, sep,
