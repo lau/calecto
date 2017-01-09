@@ -30,7 +30,7 @@ functionality of the Calendar library:
 
 ### If you are using Phoenix
 
-- If you are Phoenix you can add the line `use Calecto.Schema` in the file
+- If you are using Phoenix you can add the line `use Calecto.Schema` in the file
 `web/web.ex` in the `model` function definition like so:
 
 ```elixir
