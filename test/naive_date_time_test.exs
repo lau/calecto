@@ -1,7 +1,6 @@
 defmodule NaiveDateTimeTest do
   use ExUnit.Case
 
-  @calendar_ndt_sans_usec Calendar.NaiveDateTime.from_erl!({{2001,7,29},{1,2,3}})
   @calendar_ndt_zero_usec Calendar.NaiveDateTime.from_erl!({{2001,7,29},{1,2,3}}, 0)
   @calendar_ndt_with_sec_zero Calendar.NaiveDateTime.from_erl!({{2001,7,29},{1,2,0}}, 0)
   @calendar_ndt_with_usec Calendar.NaiveDateTime.from_erl!({{2001,7,29},{1,2,3}}, 2345)
