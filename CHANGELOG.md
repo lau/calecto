@@ -1,5 +1,11 @@
 # Changelog for Calecto
 
+## [0.16.2] - 2017-01-21
+
+## Changed
+
+- Allow Calendar ~0.16, so that version 0.17 is also allowed
+
 ## [0.16.1] - 2016-11-01
 
 ## Changed
