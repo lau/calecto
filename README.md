@@ -101,7 +101,7 @@ If you have a `time` as a primitive type, you can use `Calecto.Time`.
 
 Put the primitive type in your migrations and the Ecto type in your schema.
 
-*) If you are using Postgres as a database you can also use the Calecto.DateTime
+* If you are using Postgres as a database you can also use the Calecto.DateTime
 type. This allows you to save any Calendar.DateTime struct. This is useful for
 saving for instance future times for meetings in a certain timezone. Even if
 timezone rules change, the "wall time" will stay the same. See the
