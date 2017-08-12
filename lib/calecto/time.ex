@@ -4,6 +4,8 @@ defmodule Calecto.Time do
 
   @moduledoc """
   Calendar Time for Ecto
+
+  Deprecated in favor of :time
   """
 
   @behaviour Ecto.Type

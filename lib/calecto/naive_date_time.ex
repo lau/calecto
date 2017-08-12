@@ -11,7 +11,7 @@ defmodule Calecto.NaiveDateTime do
   @doc """
   The Ecto primitive type.
   """
-  def type, do: :datetime
+  def type, do: :naive_datetime
 
   @doc """
   Casts to datetime.

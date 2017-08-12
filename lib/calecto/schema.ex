@@ -45,16 +45,17 @@ defmodule Calecto.Schema do
   ```
 
   """
-  @default_timestamps_opts [type: Calecto.DateTimeUTC]
+  @default_timestamps_opts [type: :utc_datetime]
   defmacro __using__(opts) do
     autogen_args = case Keyword.fetch(opts, :usec) do
-      {:ok, true} -> [:usec]
-      _           -> [:sec]
+      {:ok, false} -> [:sec]
+      _            -> [:usec]
     end
-    autogenerate_opts = [autogenerate: {Calecto.DateTimeUTC, :autogenerate, autogen_args}]
+    autogenerate_opts = [autogenerate: {:utc_datetime, :autogenerate, autogen_args}]
     escaped_opts = opts |> Keyword.merge(autogenerate_opts) |> Macro.escape
     quote do
       @timestamps_opts unquote(Keyword.merge(escaped_opts, @default_timestamps_opts))
+      IO.warn("Deprecation warning: `use Calecto.Schema` is deprecated. Instead when using `timestamps` in schemas, make sure to set `type` to `:utc_datetime`: `timestamps([type: :utc_datetime])`", Macro.Env.stacktrace(__ENV__))
     end
   end
 end

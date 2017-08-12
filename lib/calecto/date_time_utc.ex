@@ -11,7 +11,7 @@ defmodule Calecto.DateTimeUTC do
   @doc """
   The Ecto primitive type.
   """
-  def type, do: :datetime
+  def type, do: :datetime_utc
 
   @doc """
   Casts to datetime.

@@ -9,6 +9,8 @@ defmodule Calecto.Date do
 
   @doc """
   The Ecto primitive type.
+
+  Deprecated in favor of :date
   """
   def type, do: :date
 
