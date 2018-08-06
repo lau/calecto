@@ -6,11 +6,14 @@ Status](https://travis-ci.org/lau/calecto.svg?branch=master)](https://travis-ci.
 [![Hex Version](http://img.shields.io/hexpm/v/calecto.svg?style=flat)](https://hex.pm/packages/calecto)
 
 
-## Library meant for older Ecto versions
+## Library originally made for older Ecto versions
 
 This was made before Ecto had native support for built in Elixir Calendar types.
-If you use Ecto 2.1 and newer, Calecto should only be used for the `Calecto.DateTime`
+If Ecto 2.1 and newer is used, Calecto should only be used for the `Calecto.DateTime`
 type, which is meant for `DateTime`s that are not UTC only. This type is specific to Postgres.
+Except for `Calecto.DateTime` the other types have equivalent built in types in Ecto 2.1.
+
+## Description
 
 Library to make it easy to use [Calendar](https://github.com/lau/calendar) and
 [Ecto](https://github.com/elixir-lang/ecto) together.
