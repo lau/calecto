@@ -35,6 +35,7 @@ defmodule Calecto.Mixfile do
   defp description do
     """
     Library for using Calendar with Ecto.
+    Made for Ecto version older than 2.1.
     This lets you save Calendar types in Ecto and work
     with date-times in multiple timezones.
     """
