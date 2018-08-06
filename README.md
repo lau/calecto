@@ -5,6 +5,13 @@ Calecto
 Status](https://travis-ci.org/lau/calecto.svg?branch=master)](https://travis-ci.org/lau/calecto)
 [![Hex Version](http://img.shields.io/hexpm/v/calecto.svg?style=flat)](https://hex.pm/packages/calecto)
 
+
+## Library meant for older Ecto versions
+
+This was made before Ecto had native support for built in Elixir Calendar types.
+If you use Ecto 2.1 and newer, Calecto should only be used for the `Calecto.DateTime`
+type, which is meant for `DateTime`s that are not UTC only. This type is specific to Postgres.
+
 Library to make it easy to use [Calendar](https://github.com/lau/calendar) and
 [Ecto](https://github.com/elixir-lang/ecto) together.
 For saving dates, times and datetimes in Ecto. Instead of using the Ecto
@@ -15,7 +22,7 @@ For use with Elixir 1.3 and Calendar ~> 0.16 add the following version to your d
 
 ```elixir
 defp deps do
-  [ {:calecto, "~> 0.16.0"}, ]
+  [ {:calecto, "~> 0.17.0"}, ]
 end
 ```
 
