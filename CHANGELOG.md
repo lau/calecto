@@ -1,5 +1,10 @@
 # Changelog for Calecto
 
+## [0.17.0] - 2017-07-23
+## Changed
+
+- Ecto versions earlier than 2.1 not allowed
+
 ## [0.16.2] - 2017-01-21
 
 ## Changed

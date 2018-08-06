@@ -11,11 +11,12 @@ defmodule Calecto.NaiveDateTime do
   @doc """
   The Ecto primitive type.
   """
-  def type, do: :datetime
+  def type, do: :naive_datetime
 
   @doc """
   Casts to datetime.
   """
+  @deprecated "Use Ecto's built in `:naive_datetime` instead of `Calecto.NaiveDateTime`"
   def cast(<<year::4-bytes, ?-, month::2-bytes, ?-, day::2-bytes, sep,
              hour::2-bytes, ?:, min::2-bytes, ?:, sec::2-bytes, rest::binary>>) when sep in [?\s, ?T] do
     if usec(rest) do

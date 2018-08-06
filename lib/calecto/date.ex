@@ -9,12 +9,15 @@ defmodule Calecto.Date do
 
   @doc """
   The Ecto primitive type.
+
+  Deprecated in favor of :date
   """
   def type, do: :date
 
   @doc """
   Casts to date.
   """
+  @deprecated "Use Ecto's built in `:date` instead of `Calecto.Date`"
   def cast(<<year::4-bytes, ?-, month::2-bytes, ?-, day::2-bytes>>),
     do: from_parts(to_i(year), to_i(month), to_i(day))
   def cast(%Date{} = d),

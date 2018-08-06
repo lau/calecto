@@ -5,21 +5,32 @@ Calecto
 Status](https://travis-ci.org/lau/calecto.svg?branch=master)](https://travis-ci.org/lau/calecto)
 [![Hex Version](http://img.shields.io/hexpm/v/calecto.svg?style=flat)](https://hex.pm/packages/calecto)
 
+
+## Library originally made for older Ecto versions
+
+This was made before Ecto had native support for built in Elixir Calendar types.
+If Ecto 2.1 and newer is used, Calecto should only be used for the `Calecto.DateTime`
+type, which is meant for `DateTime`s that are not UTC only. This type is specific to Postgres.
+Except for `Calecto.DateTime` the other types have equivalent built in types in Ecto 2.1.
+
+## Description
+
 Library to make it easy to use [Calendar](https://github.com/lau/calendar) and
 [Ecto](https://github.com/elixir-lang/ecto) together.
 For saving dates, times and datetimes in Ecto. Instead of using the Ecto
 types for Date, Time and DateTime, you can access the features of the Calendar
 library. With timezone awareness, parsing, and formatting functionality.
 
-For use with Elixir 1.3 and Calendar ~> 0.16 add the following version to your deps:
+For use with Elixir 1.3+ and Ecto 2.1+ add the following version to your deps:
 
 ```elixir
 defp deps do
-  [ {:calecto, "~> 0.16.0"}, ]
+  [ {:calecto, "~> 0.17.0"}, ]
 end
 ```
 
 If you use a Calendar version earlier than 0.16, use Calecto version ~> 0.6.1
+If you use an Ecto version earlier than 2.1, use Calecto version ~> 0.16.0
 
 ## Super quick way to get started
 
@@ -85,14 +96,18 @@ timezone. See more in the [Calendar documentation](http://hexdocs.pm/calendar/).
 If you have a primitive type as listed below you can swap it for a Calecto type
 simply by adding the type to your Ecto schema.
 
-| Primitive type            | Ecto schema type      | Equivalent Calendar type |
-| ------------------------- | --------------------- | ------------------------ |
-| *Used in migrations*      | *Used in schemas*     | *Type returned from db*  |
-| :date                     | Calecto.Date          | Date                     |
-| :time                     | Calecto.Time          | Time                     |
-| :datetime                 | Calecto.DateTimeUTC   | DateTime                 |
-| :datetime                 | Calecto.NaiveDateTime | NaiveDateTime            |
-| :calendar_datetime        | Calecto.DateTime*     | DateTime                 |
+Except for `Calecto.DateTime` only use the types starting with `Calecto` with Ecto
+version older than 2.1. For Ecto 2.1 and higher use the types that are built
+into Ecto 2.1 - shown in the second column.
+
+| Primitive type            | Ecto 2.1+ schema type | Legacy Ecto schema type | Equivalent Calendar type |
+| ------------------------- | ----------------------| ----------------------- | ------------------------ |
+| *Used in migrations*      | *Used in schemas*     | *Used in schemas*       | *Type returned from db*  |
+| :date                     | :date                 | Calecto.Date            | Date                     |
+| :time                     | :time                 | Calecto.Time            | Time                     |
+| :datetime                 | :utc_datetime         | Calecto.DateTimeUTC     | DateTime                 |
+| :datetime                 | :naive_datetime       | Calecto.NaiveDateTime   | NaiveDateTime            |
+| :calendar_datetime        | N/A                   | Calecto.DateTime*       | DateTime                 |
 
 If you have a `datetime` as a primitive type, you can use `Calecto.NaiveDateTime` or
 `Calecto.DateTimeUTC`.
