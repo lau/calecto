@@ -3,7 +3,7 @@ defmodule Calecto.Utils do
 
   def usec("." <> string) do
     String.slice(string, 0..5)
-    |> String.ljust(6, ?0)
+    |> String.pad_trailing(6, "0")
     |> Integer.parse
     |> elem(0)
   end
