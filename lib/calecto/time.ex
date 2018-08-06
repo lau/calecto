@@ -18,6 +18,7 @@ defmodule Calecto.Time do
   @doc """
   Casts to time.
   """
+  @deprecated "Use Ecto's built in `:time` instead of `Calecto.Time`"
   def cast(<<hour::2-bytes, ?:, min::2-bytes, ?:, sec::2-bytes, rest::binary>>) do
     if usec(rest) do
       from_parts(to_i(hour), to_i(min), to_i(sec))

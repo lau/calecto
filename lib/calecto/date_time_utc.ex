@@ -16,6 +16,7 @@ defmodule Calecto.DateTimeUTC do
   @doc """
   Casts to datetime.
   """
+  @deprecated "Use Ecto's built in `:utc_datetime` instead of `Calecto.DateTimeUTC`"
   def cast(<<year::4-bytes, ?-, month::2-bytes, ?-, day::2-bytes, sep,
              hour::2-bytes, ?:, min::2-bytes, ?:, sec::2-bytes, rest::binary>>) when sep in [?\s, ?T] do
     if usec(rest) do
