@@ -50,4 +50,8 @@ defmodule DateTimeTest do
                                  "hour" => "99", "min" => "2",
                                  "timezone" => "Europe/Stockholm"}) == {:error, :invalid_datetime}
   end
+
+  test "cast iso datetime" do
+    assert Calecto.DateTime.cast("2018-11-13T13:00:00.000000+01:00")
+  end
 end

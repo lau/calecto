@@ -49,6 +49,9 @@ defmodule Calecto.DateTime do
     cast(%{"year"=>year, "month"=>month, "day"=>day, "hour"=>hour, "min"=>min,
            "sec"=> 0, "timezone" => timezone})
   end
+  def cast(datetime) when is_binary(datetime) do
+    datetime |> Calendar.DateTime.Parse.rfc3339("Europe/Paris")
+  end
 
   def cast!(datetime) do
     {:ok, dt} = cast(datetime)
