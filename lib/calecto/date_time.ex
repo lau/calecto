@@ -62,7 +62,7 @@ defmodule Calecto.DateTime do
     - timezone
   """
   def dump(%DateTime{} = dt) do
-    {:ok, {Calendar.DateTime.to_micro_erl(dt), dt.utc_offset+dt.std_offset, dt.time_zone}}
+    {:ok, {Calendar.DateTime.to_naive(dt), dt.utc_offset+dt.std_offset, dt.time_zone}}
   end
 
   def dump(_), do: :error
@@ -76,7 +76,7 @@ defmodule Calecto.DateTime do
     - timezone
   """
   def load({dt, total_off, timezone}) do
-    Calendar.DateTime.from_micro_erl_total_off(dt, timezone, total_off)
+    Calendar.DateTime.from_micro_erl_total_off(Calendar.NaiveDateTime.to_micro_erl(dt), timezone, total_off)
   end
 
   def load(_), do: :error
