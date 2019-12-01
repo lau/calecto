@@ -14,8 +14,8 @@ defmodule DateTimeTest do
   @map_dt_no_sec_legacy %{"day" => "27", "month" => "2", "year" => "2001", "hour" => "1", "min" => "2", "timezone" => "America/Montevideo"}
 
   test "dump DateTime" do
-    assert Calecto.DateTime.dump(@mvd_calendar_dt_sans_usec) == {:ok, {{{2001, 2, 27}, {1, 2, 3, 0}}, -10800, "America/Montevideo"}}
-    assert Calecto.DateTime.dump(@mvd_calendar_dt_with_usec) == {:ok, {{{2001, 2, 27}, {1, 2, 3, 2345}}, -10800, "America/Montevideo"}}
+    assert Calecto.DateTime.dump(@mvd_calendar_dt_sans_usec) == {:ok, {~N[2001-02-27 01:02:03], -10800, "America/Montevideo"}}
+    assert Calecto.DateTime.dump(@mvd_calendar_dt_with_usec) == {:ok, {~N[2001-02-27 01:02:03.002345], -10800, "America/Montevideo"}}
   end
 
   test "load DateTime" do

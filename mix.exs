@@ -3,7 +3,7 @@ defmodule Calecto.Mixfile do
 
   def project do
     [app: :calecto,
-     version: "0.17.0",
+     version: "1.0.0-dev",
      elixir: "~> 1.3",
      package: package(),
      description: description(),
@@ -16,10 +16,9 @@ defmodule Calecto.Mixfile do
 
   defp deps do
     [
-      {:ecto, "~> 2.1"},
-      {:calendar, "~> 0.16"},
-
-      {:ex_doc, "~> 0.14.5", only: :dev},
+      {:ecto, "~> 3.0"},
+      {:calendar, "~> 0.16 or ~> 1.0"},
+      {:ex_doc, "~> 0.21", only: :dev, runtime: false}
     ]
   end
 
