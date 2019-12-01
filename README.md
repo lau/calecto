@@ -6,12 +6,14 @@ Status](https://travis-ci.org/lau/calecto.svg?branch=master)](https://travis-ci.
 [![Hex Version](http://img.shields.io/hexpm/v/calecto.svg?style=flat)](https://hex.pm/packages/calecto)
 
 
+Save `DateTime`s in with Ecto and Postgres and preserve time zone information.
+
 ## Library originally made for older Ecto versions
 
 This was made before Ecto had native support for built in Elixir Calendar types.
 If Ecto 2.1 and newer is used, Calecto should only be used for the `Calecto.DateTime`
 type, which is meant for `DateTime`s that are not UTC only. This type is specific to Postgres.
-Except for `Calecto.DateTime` the other types have equivalent built in types in Ecto 2.1.
+Except for `Calecto.DateTime` the other types have equivalent built in types in Ecto 2.1 or newer.
 
 ## Description
 
@@ -21,7 +23,16 @@ For saving dates, times and datetimes in Ecto. Instead of using the Ecto
 types for Date, Time and DateTime, you can access the features of the Calendar
 library. With timezone awareness, parsing, and formatting functionality.
 
-For use with Elixir 1.3+ and Ecto 2.1+ add the following version to your deps:
+
+For use with Ecto 3.0+ add the following version to your deps:
+
+```elixir
+defp deps do
+  [ {:calecto, "~> 1.0.0-dev"}, ]
+end
+```
+
+For use with Elixir 1.3+ and Ecto ~> 2.1 add the following version to your deps:
 
 ```elixir
 defp deps do
