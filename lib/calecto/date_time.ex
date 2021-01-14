@@ -85,4 +85,9 @@ defmodule Calecto.DateTime do
   def equal?(a, b) do
     a == b
   end
+
+  @doc false
+  def embed_as(_format) do
+    :self
+  end
 end

@@ -60,6 +60,11 @@ defmodule Calecto.Date do
   end
 
   @doc false
+  def equal?(a, b) do
+    a == b
+  end
+
+  @doc false
   def embed_as(:json), do: :self
   def embed_as(_format), do: :self
 end
