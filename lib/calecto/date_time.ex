@@ -80,4 +80,9 @@ defmodule Calecto.DateTime do
   end
 
   def load(_), do: :error
+
+  @doc false
+  def equal?(a, b) do
+    a == b
+  end
 end
