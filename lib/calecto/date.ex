@@ -58,4 +58,13 @@ defmodule Calecto.Date do
   def load({year, month, day}) do
     Calendar.Date.from_erl({year, month, day})
   end
+
+  @doc false
+  def equal?(a, b) do
+    a == b
+  end
+
+  @doc false
+  def embed_as(:json), do: :self
+  def embed_as(_format), do: :self
 end

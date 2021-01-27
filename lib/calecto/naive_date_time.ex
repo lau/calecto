@@ -87,4 +87,14 @@ defmodule Calecto.NaiveDateTime do
   def load({date, {hour, min, sec, usec}}) do
     {date, {hour, min, sec}} |> Calendar.NaiveDateTime.from_erl(usec)
   end
+
+  @doc false
+  def equal?(a, b) do
+    a == b
+  end
+
+  @doc false
+  def embed_as(_format) do
+    :self
+  end
 end

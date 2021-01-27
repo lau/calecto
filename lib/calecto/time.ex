@@ -79,4 +79,14 @@ defmodule Calecto.Time do
   def load({hour, min, sec, usec}) do
     Calendar.Time.from_erl({hour, min, sec}, usec)
   end
+
+  @doc false
+  def equal?(a, b) do
+    a == b
+  end
+
+  @doc false
+  def embed_as(_format) do
+    :self
+  end
 end

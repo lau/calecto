@@ -104,4 +104,14 @@ defmodule Calecto.DateTimeUTC do
     {date, {h, m, s}} =:calendar.now_to_datetime(timestamp)
     load({date, {h, m, s, usec}}) |> elem(1)
   end
+
+  @doc false
+  def equal?(a, b) do
+    a == b
+  end
+
+  @doc false
+  def embed_as(_format) do
+    :self
+  end
 end
